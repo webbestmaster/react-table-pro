@@ -52,7 +52,9 @@
     "node": ">=12.0.0",
     "npm": ">=5.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@material-ui/core": "^4.11.0"
+  },
   "peerDependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1"

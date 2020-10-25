@@ -1,3 +1,3 @@
 // @flow
 
-export {Table} from './table/c-table';
+export {EnhancedTable as Table} from './table/enhanced-table/c-enhanced-table';

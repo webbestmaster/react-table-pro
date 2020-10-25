@@ -1,0 +1,51 @@
+$main-background-text-color: #f0ece3;
+$ui-unit: 8px;
+
+.table_wrapper {
+    background-color: $main-background-text-color;
+    display: block;
+    padding: 16px 24px;
+}
+
+.image_wrapper {
+    cursor: pointer;
+    display: block;
+    padding-bottom: $ui-unit / 2;
+    padding-top: $ui-unit / 2;
+    width: 100%;
+}
+
+.table_content {
+    position: relative;
+}
+
+.image {
+    background-color: #999;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+    max-height: 128px;
+    max-width: 128px;
+    padding: $ui-unit;
+}
+
+%table-checkbox,
+.table_checkbox {
+    background-image: url('./i/checkbox.svg');
+    height: 24px;
+    width: 24px;
+}
+
+.table_checkbox__checked {
+    @extend %table-checkbox;
+
+    background-image: url('./i/checkbox-checked.svg');
+}
+
+.sort_label {
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
