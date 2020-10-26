@@ -13,7 +13,7 @@ import {
 
 import appStyle from './app.scss';
 
-export function getData(
+export function getDataList(
     pageIndex: number, // page index started from 0
     rowsPerPage: number, // number of items in response
     sortBy: string, // id of field
@@ -46,7 +46,7 @@ export function App(): Node {
         order: SortDirectionType,
         refreshTable: () => Promise<mixed> // save and call this function to refresh table
     ): Promise<EnhancedTableGetDataResultType> {
-        const dataList: Array<EnhancedTableBodyCellType> = await getData(pageIndex, rowsPerPage, orderBy, order);
+        const dataList: Array<EnhancedTableBodyCellType> = await getDataList(pageIndex, rowsPerPage, orderBy, order);
 
         return {
             allElementsNumber: 50,

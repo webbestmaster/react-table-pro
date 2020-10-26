@@ -1,10 +1,12 @@
-$main-background-text-color: #f0ece3;
+$main-background-text-color: #fff;
 $ui-unit: 8px;
 
 .table_wrapper {
     background-color: $main-background-text-color;
+    position: relative;
     display: block;
     padding: 16px 24px;
+    border-radius: 4px;
 }
 
 .image_wrapper {
@@ -15,9 +17,11 @@ $ui-unit: 8px;
     width: 100%;
 }
 
+/*
 .table_content {
     position: relative;
 }
+*/
 
 .image {
     background-color: #999;

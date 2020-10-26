@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component, type Node} from 'react';
+import React, {type Node, useState, useEffect, useCallback} from 'react';
 import Table from '@material-ui/core/Table';
 import TablePagination from '@material-ui/core/TablePagination';
 import Paper from '@material-ui/core/Paper';
@@ -8,6 +8,8 @@ import Paper from '@material-ui/core/Paper';
 import {EmptyTableBody} from '../empty-table-body/c-empty-table-body';
 import {mixedToInt, typeConverter} from '../../lib/type';
 import {Spinner} from '../../layout/spinner/c-spinner';
+
+import {IsRender} from '../../layout/is-render/c-is-render';
 
 import enhancedTableStyle from './enhanced-table.scss';
 import {EnhancedTableHead} from './c-enhanced-table-head';
@@ -29,145 +31,117 @@ type StateType = {|
     +isInProgress: boolean,
 |};
 
-export class EnhancedTable extends Component<PropsType, StateType> {
-    constructor(props: PropsType) {
-        super(props);
+export function EnhancedTable(props: PropsType): Node {
+    const {getData, header} = props;
 
-        this.state = {
-            ...getDefaultState(props),
-            ...getSavedState(props),
-            pageIndex: 0,
-            list: [],
-            allElementsNumber: 0,
-            isInProgress: false,
-        };
+    const state: StateType = {
+        ...getDefaultState(props),
+        ...getSavedState(props),
+        pageIndex: 0,
+        list: [],
+        allElementsNumber: 0,
+        isInProgress: false,
+    };
+
+    const [order, setOrder] = useState<SortDirectionType>(state.order);
+    const [orderBy, setOrderBy] = useState<string>(state.orderBy);
+    const [rowsPerPage, setRowsPerPage] = useState<number>(state.rowsPerPage);
+    const [pageIndex, setPageIndex] = useState<number>(state.pageIndex);
+    const [list, setList] = useState<Array<EnhancedTableBodyCellType>>(state.list);
+    const [allElementsNumber, setAllElementsNumber] = useState<number>(state.allElementsNumber);
+    const [isInProgress, setIsInProgress] = useState<boolean>(state.isInProgress);
+
+    const fetchDataMemoized = useCallback(
+        async function fetchData() {
+            setIsInProgress(true);
+
+            const data = await getData(pageIndex, rowsPerPage, orderBy, order, fetchData);
+
+            setList(data.list);
+            setAllElementsNumber(data.allElementsNumber);
+            setIsInProgress(false);
+
+            saveState({order, orderBy, rowsPerPage}, props);
+        },
+        [getData, order, orderBy, pageIndex, rowsPerPage, props]
+    );
+
+    useEffect(() => {
+        fetchDataMemoized().catch(console.error);
+    }, [pageIndex, rowsPerPage, orderBy, order, fetchDataMemoized]);
+
+    function handleRequestSort(event: SyntheticEvent<HTMLElement>, newOrderBy: string) {
+        const isAscOrder = orderBy === newOrderBy && order === enhancedTableDirection.desc;
+        const newOrder = isAscOrder ? enhancedTableDirection.asc : enhancedTableDirection.desc;
+
+        setOrder(newOrder);
+        setOrderBy(newOrderBy);
     }
 
-    componentDidMount() {
-        this.fetchData();
+    function handleChangePage(event: SyntheticEvent<HTMLElement> | null, newPageIndex: number) {
+        setPageIndex(newPageIndex);
     }
 
-    fetchData = async () => {
-        this.setState({isInProgress: true});
-
-        const {state, props} = this;
-        const {pageIndex, rowsPerPage, orderBy, order} = state;
-
-        const {list, allElementsNumber} = await props.getData(pageIndex, rowsPerPage, orderBy, order, this.fetchData);
-
-        this.setState({list, allElementsNumber, isInProgress: false});
-
-        saveState({order, orderBy, rowsPerPage}, props);
-    };
-
-    handleRequestSort = (event: SyntheticEvent<HTMLElement>, orderBy: string) => {
-        const {orderBy: oldOrderBy, order: oldOrder} = this.state;
-        const order
-            = oldOrderBy === orderBy && oldOrder === enhancedTableDirection.desc
-                ? enhancedTableDirection.asc
-                : enhancedTableDirection.desc;
-
-        this.setState({order, orderBy}, this.fetchData);
-    };
-
-    handleChangePage = (event: SyntheticEvent<HTMLElement> | null, pageIndex: number) => {
-        this.setState({pageIndex}, this.fetchData);
-    };
-
-    handleChangeRowsPerPage = (event: SyntheticEvent<HTMLElement> | null) => {
+    function handleChangeRowsPerPage(event: SyntheticEvent<HTMLElement> | null) {
         if (event === null) {
             return;
         }
 
         const {value}: {value?: mixed} = typeConverter<{value?: mixed}>(event.target);
 
-        this.setState({rowsPerPage: mixedToInt(value, 0)}, this.fetchData);
-    };
+        setRowsPerPage(mixedToInt(value, 0));
+    }
 
-    renderNoData(): Node {
-        const {props, state} = this;
-        const {header} = props;
-        const {order, orderBy, rowsPerPage, pageIndex, allElementsNumber, isInProgress} = state;
-
-        return [
-            <Table key="table">
-                <EnhancedTableHead
-                    onRequestSort={this.handleRequestSort}
-                    order={order}
-                    orderBy={orderBy}
-                    rowList={header.rowList}
+    return (
+        <div className={enhancedTableStyle.table_wrapper}>
+            <EnhancedTableToolbar header={header.header}/>
+            <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
+            <IsRender isRender={list.length === 0}>
+                <Table key="table-no-data">
+                    <EnhancedTableHead
+                        onRequestSort={handleRequestSort}
+                        order={order}
+                        orderBy={orderBy}
+                        rowList={header.rowList}
+                    />
+                    <EmptyTableBody colSpan={header.rowList.length} isInProgress={isInProgress}/>
+                </Table>
+                <TablePagination
+                    backIconButtonProps={{'aria-label': 'Previous Page'}}
+                    component="div"
+                    count={allElementsNumber}
+                    key="table-pagination-no-data"
+                    nextIconButtonProps={{'aria-label': 'Next Page'}}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    page={pageIndex}
+                    rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={enhancedTableRowsPerPageOptions}
                 />
-                <EmptyTableBody colSpan={header.rowList.length} isInProgress={isInProgress}/>
-            </Table>,
-            <TablePagination
-                backIconButtonProps={{'aria-label': 'Previous Page'}}
-                component="div"
-                count={allElementsNumber}
-                key="table-pagination"
-                nextIconButtonProps={{'aria-label': 'Next Page'}}
-                onChangePage={this.handleChangePage}
-                onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                page={pageIndex}
-                rowsPerPage={rowsPerPage}
-                rowsPerPageOptions={enhancedTableRowsPerPageOptions}
-            />,
-        ];
-    }
-
-    renderData(): Node {
-        const {props, state} = this;
-        const {header} = props;
-        const {order, orderBy, rowsPerPage, pageIndex, list, allElementsNumber, isInProgress} = state;
-
-        return [
-            <Table key="table">
-                <EnhancedTableHead
-                    onRequestSort={this.handleRequestSort}
-                    order={order}
-                    orderBy={orderBy}
-                    rowList={header.rowList}
+            </IsRender>
+            <IsRender isRender={list.length > 0}>
+                <Table key="table">
+                    <EnhancedTableHead
+                        onRequestSort={handleRequestSort}
+                        order={order}
+                        orderBy={orderBy}
+                        rowList={header.rowList}
+                    />
+                    <EnhancedTableBody header={header} isInProgress={isInProgress} table={{rowList: list}}/>
+                </Table>
+                <TablePagination
+                    backIconButtonProps={{'aria-label': 'Previous Page'}}
+                    component="div"
+                    count={allElementsNumber}
+                    key="table-pagination"
+                    nextIconButtonProps={{'aria-label': 'Next Page'}}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    page={pageIndex}
+                    rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={enhancedTableRowsPerPageOptions}
                 />
-                <EnhancedTableBody header={header} isInProgress={isInProgress} table={{rowList: list}}/>
-            </Table>,
-            <TablePagination
-                backIconButtonProps={{'aria-label': 'Previous Page'}}
-                component="div"
-                count={allElementsNumber}
-                key="table-pagination"
-                nextIconButtonProps={{'aria-label': 'Next Page'}}
-                onChangePage={this.handleChangePage}
-                onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                page={pageIndex}
-                rowsPerPage={rowsPerPage}
-                rowsPerPageOptions={enhancedTableRowsPerPageOptions}
-            />,
-        ];
-    }
-
-    renderContent(): Node {
-        const {state} = this;
-        const {list, isInProgress} = state;
-
-        return (
-            <div className={enhancedTableStyle.table_content}>
-                <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
-                {list.length === 0 ? this.renderNoData() : this.renderData()}
-            </div>
-        );
-    }
-
-    render(): Node {
-        const {props} = this;
-        const {header} = props;
-        const headerText = header.header;
-
-        return (
-            <div className={enhancedTableStyle.table_wrapper}>
-                <Paper>
-                    <EnhancedTableToolbar header={headerText}/>
-                    {this.renderContent()}
-                </Paper>
-            </div>
-        );
-    }
+            </IsRender>
+        </div>
+    );
 }
