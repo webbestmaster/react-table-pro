@@ -46,7 +46,7 @@ export class EnhancedTableBody extends Component<PropsType, StateType> {
         );
     }
 
-    renderRow = (row: EnhancedTableBodyCellType, index: number): Node => {
+    renderRow(row: EnhancedTableBodyCellType, index: number): Node {
         const {props} = this;
         const {header} = props;
         const {rowList} = header;
@@ -56,13 +56,17 @@ export class EnhancedTableBody extends Component<PropsType, StateType> {
                 {rowList.map((headerCell: EnhancedTableHeaderCellType): Node => this.renderCell(headerCell, row))}
             </TableRow>
         );
-    };
+    }
 
     render(): Node {
         const {props} = this;
         const {table} = props;
         const {rowList} = table;
 
-        return <TableBody key="table">{rowList.map(this.renderRow)}</TableBody>;
+        return (
+            <TableBody key="table">
+                {rowList.map((row: EnhancedTableBodyCellType, index: number): Node => this.renderRow(row, index))}
+            </TableBody>
+        );
     }
 }
