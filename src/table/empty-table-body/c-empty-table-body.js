@@ -19,7 +19,7 @@ export function EmptyTableBody(props: PropsType): Node {
     return (
         <TableBody>
             <TableRow>
-                <TableCell className={emptyTableBodyStyle.cell} colSpan={colSpan}>
+                <TableCell className={emptyTableBodyStyle.empty_table_cell} colSpan={colSpan}>
                     {isInProgress ? null : <EmptyTableCellContent/>}
                 </TableCell>
             </TableRow>

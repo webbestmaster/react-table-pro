@@ -1,9 +1,8 @@
 // @flow
 
-import React, {type Node, useState, useEffect, useCallback} from 'react';
+import React, {type Node, useCallback, useEffect, useState} from 'react';
 import Table from '@material-ui/core/Table';
 import TablePagination from '@material-ui/core/TablePagination';
-import Paper from '@material-ui/core/Paper';
 
 import {EmptyTableBody} from '../empty-table-body/c-empty-table-body';
 import {mixedToInt, typeConverter} from '../../lib/type';

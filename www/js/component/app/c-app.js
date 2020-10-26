@@ -46,6 +46,7 @@ export function App(): Node {
         order: SortDirectionType,
         refreshTable: () => Promise<mixed> // save and call this function to refresh table
     ): Promise<EnhancedTableGetDataResultType> {
+        // await new Promise(resolve => setTimeout(resolve, 100e3));
         const dataList: Array<EnhancedTableBodyCellType> = await getDataList(pageIndex, rowsPerPage, orderBy, order);
 
         return {
