@@ -2,7 +2,7 @@
 
 /* global localStorage */
 
-import {isNumber, isString} from '../../lib/is';
+import {isNumber, isString} from '../lib/is';
 
 import {defaultRowPerPage, enhancedTableDirection} from './enhanced-table-const';
 

@@ -5,7 +5,7 @@ import TableBody from '@material-ui/core/TableBody/TableBody';
 import TableRow from '@material-ui/core/TableRow/TableRow';
 import TableCell from '@material-ui/core/TableCell/TableCell';
 
-import {isBoolean} from '../../lib/is';
+import {isBoolean} from '../lib/is';
 
 import {EnhancedTableCheckbox} from './ui/c-enhanced-table-checkbox';
 import type {

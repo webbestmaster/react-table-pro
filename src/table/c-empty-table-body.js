@@ -6,7 +6,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Typography from '@material-ui/core/Typography';
 
-import {IsRender} from '../../layout/is-render/c-is-render';
+import {IsRender} from '../layout/is-render/c-is-render';
 
 import enhancedTableStyle from './enhanced-table.scss';
 
