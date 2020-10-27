@@ -7,7 +7,8 @@ import TableCell from '@material-ui/core/TableCell/TableCell';
 
 import {isBoolean} from '../lib/is';
 
-import {EnhancedTableCheckbox} from './ui/c-enhanced-table-checkbox';
+import {Checkbox} from './ui/c-checkbox';
+
 import type {
     EnhancedTableBodyCellType,
     EnhancedTableBodyType,
@@ -29,7 +30,7 @@ export class EnhancedTableBody extends Component<PropsType, StateType> {
         const cellValue = row[cellName];
 
         if (isBoolean(cellValue)) {
-            return <EnhancedTableCheckbox isChecked={cellValue}/>;
+            return <Checkbox isChecked={cellValue}/>;
         }
 
         return cellValue;

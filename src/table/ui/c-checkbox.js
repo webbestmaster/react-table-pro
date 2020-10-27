@@ -8,7 +8,7 @@ type PropsType = {|
     +isChecked: boolean,
 |};
 
-export function EnhancedTableCheckbox(props: PropsType): Node {
+export function Checkbox(props: PropsType): Node {
     const {isChecked} = props;
 
     const path = isChecked
