@@ -7,8 +7,8 @@ import React, {type Node} from 'react';
 import {
     Table,
     type SortDirectionType,
-    type EnhancedTableGetDataResultType,
-    type EnhancedTableBodyCellType,
+    type TableGetDataResultType,
+    type TableBodyCellType,
 } from '../../../../src/table';
 
 import appStyle from './app.scss';
@@ -18,18 +18,18 @@ export function getDataList(
     rowsPerPage: number, // number of items in response
     sortBy: string, // id of field
     order: SortDirectionType // asc or desc
-): Promise<Array<EnhancedTableBodyCellType>> {
+): Promise<Array<TableBodyCellType>> {
     const query = `page=${pageIndex + 1}&limit=${rowsPerPage}&sortBy=${sortBy}&order=${order}`;
 
     return (
         fetch('https://5f9704ad11ab98001603b694.mockapi.io/user?' + query)
             // $FlowFixMe
-            .then((data: mixed): Promise<Array<EnhancedTableBodyCellType>> => data.json())
+            .then((data: mixed): Promise<Array<TableBodyCellType>> => data.json())
     );
 }
 
 export function App(): Node {
-    const enhancedTableHeader = {
+    const tableHeader = {
         header: 'User list',
         rowList: [
             {id: 'id', align: 'left', label: 'Id', hasSort: false},
@@ -40,15 +40,15 @@ export function App(): Node {
         ],
     };
 
-    async function enhancedTableGetUserList(
+    async function tableGetUserList(
         pageIndex: number,
         rowsPerPage: number,
         orderBy: string,
         order: SortDirectionType,
         refreshTable: () => Promise<mixed> // save and call this function to refresh table
-    ): Promise<EnhancedTableGetDataResultType> {
+    ): Promise<TableGetDataResultType> {
         // await new Promise(resolve => setTimeout(resolve, 100e3));
-        const dataList: Array<EnhancedTableBodyCellType> = await getDataList(pageIndex, rowsPerPage, orderBy, order);
+        const dataList: Array<TableBodyCellType> = await getDataList(pageIndex, rowsPerPage, orderBy, order);
 
         return {
             allElementsNumber: 50,
@@ -58,7 +58,7 @@ export function App(): Node {
 
     return (
         <div className={appStyle.app}>
-            <Table getData={enhancedTableGetUserList} header={enhancedTableHeader}/>
+            <Table getData={tableGetUserList} header={tableHeader}/>
         </div>
     );
 }

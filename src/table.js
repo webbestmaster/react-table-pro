@@ -4,11 +4,11 @@ export {Table} from './table/c-table';
 
 export type {
     SortDirectionType,
-    EnhancedTableGetDataResultType,
-    EnhancedTableBodyCellType,
-    EnhancedTablePropsType,
-    EnhancedTableGetDataType,
-    EnhancedTableHeaderType,
-    EnhancedTableHeaderCellType,
-    EnhancedTableCellAlignType,
+    TableGetDataResultType,
+    TableBodyCellType,
+    TablePropsType,
+    TableGetDataType,
+    TableHeaderType,
+    TableHeaderCellType,
+    TableCellAlignType,
 } from './table/table-type';

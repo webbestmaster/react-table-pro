@@ -1,30 +1,25 @@
 // @flow
 
 import React, {Component, type Node} from 'react';
-import TableBody from '@material-ui/core/TableBody/TableBody';
-import TableRow from '@material-ui/core/TableRow/TableRow';
-import TableCell from '@material-ui/core/TableCell/TableCell';
+import TableBodyMaterialUi from '@material-ui/core/TableBody/TableBody';
+import TableRowMaterialUi from '@material-ui/core/TableRow/TableRow';
+import TableCellMaterialUi from '@material-ui/core/TableCell/TableCell';
 
 import {isBoolean} from '../lib/is';
 
 import {Checkbox} from './ui/c-checkbox';
 
-import type {
-    EnhancedTableBodyCellType,
-    EnhancedTableBodyType,
-    EnhancedTableHeaderCellType,
-    EnhancedTableHeaderType,
-} from './table-type';
+import type {TableBodyCellType, TableBodyType, TableHeaderCellType, TableHeaderType} from './table-type';
 
 type PropsType = {|
-    +header: EnhancedTableHeaderType,
-    +table: EnhancedTableBodyType,
+    +header: TableHeaderType,
+    +table: TableBodyType,
 |};
 
 type StateType = null;
 
-export class EnhancedTableBody extends Component<PropsType, StateType> {
-    getCellValue(headerCell: EnhancedTableHeaderCellType, row: EnhancedTableBodyCellType): Node {
+export class TableBody extends Component<PropsType, StateType> {
+    getCellValue(headerCell: TableHeaderCellType, row: TableBodyCellType): Node {
         const cellName = headerCell.id;
 
         const cellValue = row[cellName];
@@ -36,26 +31,26 @@ export class EnhancedTableBody extends Component<PropsType, StateType> {
         return cellValue;
     }
 
-    renderCell(headerCell: EnhancedTableHeaderCellType, row: EnhancedTableBodyCellType): Node {
+    renderCell(headerCell: TableHeaderCellType, row: TableBodyCellType): Node {
         const cellName = headerCell.id;
         const cellValue = this.getCellValue(headerCell, row);
 
         return (
-            <TableCell align={headerCell.align} key={cellName}>
+            <TableCellMaterialUi align={headerCell.align} key={cellName}>
                 {cellValue}
-            </TableCell>
+            </TableCellMaterialUi>
         );
     }
 
-    renderRow(row: EnhancedTableBodyCellType, index: number): Node {
+    renderRow(row: TableBodyCellType, index: number): Node {
         const {props} = this;
         const {header} = props;
         const {rowList} = header;
 
         return (
-            <TableRow hover key={index} tabIndex={-1}>
-                {rowList.map((headerCell: EnhancedTableHeaderCellType): Node => this.renderCell(headerCell, row))}
-            </TableRow>
+            <TableRowMaterialUi hover key={index} tabIndex={-1}>
+                {rowList.map((headerCell: TableHeaderCellType): Node => this.renderCell(headerCell, row))}
+            </TableRowMaterialUi>
         );
     }
 
@@ -65,9 +60,9 @@ export class EnhancedTableBody extends Component<PropsType, StateType> {
         const {rowList} = table;
 
         return (
-            <TableBody key="table">
-                {rowList.map((row: EnhancedTableBodyCellType, index: number): Node => this.renderRow(row, index))}
-            </TableBody>
+            <TableBodyMaterialUi key="table">
+                {rowList.map((row: TableBodyCellType, index: number): Node => this.renderRow(row, index))}
+            </TableBodyMaterialUi>
         );
     }
 }

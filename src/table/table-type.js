@@ -4,50 +4,50 @@ import {type Node} from 'react';
 
 export type SortDirectionType = 'asc' | 'desc';
 
-export type EnhancedTableSavedStateType = {|
+export type TableSavedStateType = {|
     +order: SortDirectionType,
     +orderBy: string,
     +rowsPerPage: number,
 |};
 
-export type EnhancedTableCellAlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify';
+export type TableCellAlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify';
 
-export type EnhancedTableHeaderCellType = {|
+export type TableHeaderCellType = {|
     +id: string,
     +label: string,
-    +align: EnhancedTableCellAlignType,
+    +align: TableCellAlignType,
     +hasSort: boolean,
 |};
 
-export type EnhancedTableHeaderType = {|
+export type TableHeaderType = {|
     +header: string,
-    +rowList: Array<EnhancedTableHeaderCellType>,
+    +rowList: Array<TableHeaderCellType>,
 |};
 
-export type EnhancedTableBodyCellType = {
+export type TableBodyCellType = {
     +[key: string]: string | number | boolean | Node,
 };
 
-export type EnhancedTableBodyType = {|
-    +rowList: Array<EnhancedTableBodyCellType>,
+export type TableBodyType = {|
+    +rowList: Array<TableBodyCellType>,
 |};
 
 export type OnRequestSortCallBackType = (event: SyntheticEvent<HTMLElement>, rowId: string) => mixed;
 
-export type EnhancedTableGetDataResultType = {|
-    +list: Array<EnhancedTableBodyCellType>,
+export type TableGetDataResultType = {|
+    +list: Array<TableBodyCellType>,
     +allElementsNumber: number,
 |};
 
-export type EnhancedTableGetDataType = (
+export type TableGetDataType = (
     pageIndex: number,
     rowsPerPage: number,
     orderBy: string,
     order: SortDirectionType,
     refreshTable: () => Promise<mixed>,
-) => Promise<EnhancedTableGetDataResultType>;
+) => Promise<TableGetDataResultType>;
 
-export type EnhancedTablePropsType = {|
-    +getData: EnhancedTableGetDataType,
-    +header: EnhancedTableHeaderType,
+export type TablePropsType = {|
+    +getData: TableGetDataType,
+    +header: TableHeaderType,
 |};

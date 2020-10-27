@@ -1,10 +1,10 @@
 // @flow
 
 import React, {type Node} from 'react';
-import TableBody from '@material-ui/core/TableBody';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import Typography from '@material-ui/core/Typography';
+import TableBodyMaterialUi from '@material-ui/core/TableBody';
+import TableRowMaterialUi from '@material-ui/core/TableRow';
+import TableCellMaterialUi from '@material-ui/core/TableCell';
+import TypographyMaterialUi from '@material-ui/core/Typography';
 
 import {IsRender} from '../layout/is-render/c-is-render';
 
@@ -20,17 +20,21 @@ export function EmptyTableBody(props: PropsType): Node {
 
     /* eslint-disable react/jsx-max-depth */
     return (
-        <TableBody>
-            <TableRow>
-                <TableCell className={tableStyle.empty_table_cell} colSpan={colSpan}>
+        <TableBodyMaterialUi>
+            <TableRowMaterialUi>
+                <TableCellMaterialUi className={tableStyle.empty_table_cell} colSpan={colSpan}>
                     <IsRender isRender={!isInProgress}>
-                        <Typography align="center" className={tableStyle.empty_table_body_cell_content} variant="h6">
+                        <TypographyMaterialUi
+                            align="center"
+                            className={tableStyle.empty_table_body_cell_content}
+                            variant="h6"
+                        >
                             [ Empty ]
-                        </Typography>
+                        </TypographyMaterialUi>
                     </IsRender>
-                </TableCell>
-            </TableRow>
-        </TableBody>
+                </TableCellMaterialUi>
+            </TableRowMaterialUi>
+        </TableBodyMaterialUi>
     );
     /* eslint-enable react/jsx-max-depth */
 }

@@ -1,24 +1,24 @@
 // @flow
 
 import React, {Component, type Node} from 'react';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
+import TableHeadMaterialUi from '@material-ui/core/TableHead';
+import TableRowMaterialUi from '@material-ui/core/TableRow';
+import TableCellMaterialUi from '@material-ui/core/TableCell';
+import TableSortLabelMaterialUi from '@material-ui/core/TableSortLabel';
 
-import type {EnhancedTableHeaderCellType, OnRequestSortCallBackType, SortDirectionType} from './table-type';
+import type {TableHeaderCellType, OnRequestSortCallBackType, SortDirectionType} from './table-type';
 import tableStyle from './table.scss';
 
 type PropsType = {|
     +onRequestSort: OnRequestSortCallBackType,
     +order: SortDirectionType,
     +orderBy: string,
-    +rowList: Array<EnhancedTableHeaderCellType>,
+    +rowList: Array<TableHeaderCellType>,
 |};
 
 type StateType = null;
 
-export class EnhancedTableHead extends Component<PropsType, StateType> {
+export class TableHead extends Component<PropsType, StateType> {
     createSortHandler(rowId: string): (event: SyntheticEvent<HTMLElement>) => mixed {
         return (event: SyntheticEvent<HTMLElement>) => {
             const {props} = this;
@@ -28,7 +28,7 @@ export class EnhancedTableHead extends Component<PropsType, StateType> {
         };
     }
 
-    renderSortLabel(row: EnhancedTableHeaderCellType): Node {
+    renderSortLabel(row: TableHeaderCellType): Node {
         const {props} = this;
         const {order, orderBy} = props;
         const rowId = row.id;
@@ -42,9 +42,14 @@ export class EnhancedTableHead extends Component<PropsType, StateType> {
 
         if (orderBy === rowId) {
             return (
-                <TableSortLabel active className={tableStyle.sort_label} direction={order} onClick={handleSort}>
+                <TableSortLabelMaterialUi
+                    active
+                    className={tableStyle.sort_label}
+                    direction={order}
+                    onClick={handleSort}
+                >
                     {content}
-                </TableSortLabel>
+                </TableSortLabelMaterialUi>
             );
         }
 
@@ -55,11 +60,11 @@ export class EnhancedTableHead extends Component<PropsType, StateType> {
         );
     }
 
-    renderCell(row: EnhancedTableHeaderCellType): Node {
+    renderCell(row: TableHeaderCellType): Node {
         return (
-            <TableCell align={row.align} key={row.id}>
+            <TableCellMaterialUi align={row.align} key={row.id}>
                 {this.renderSortLabel(row)}
-            </TableCell>
+            </TableCellMaterialUi>
         );
     }
 
@@ -68,9 +73,11 @@ export class EnhancedTableHead extends Component<PropsType, StateType> {
         const {rowList} = props;
 
         return (
-            <TableHead>
-                <TableRow>{rowList.map((row: EnhancedTableHeaderCellType): Node => this.renderCell(row))}</TableRow>
-            </TableHead>
+            <TableHeadMaterialUi>
+                <TableRowMaterialUi>
+                    {rowList.map((row: TableHeaderCellType): Node => this.renderCell(row))}
+                </TableRowMaterialUi>
+            </TableHeadMaterialUi>
         );
     }
 }

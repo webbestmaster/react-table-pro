@@ -1,31 +1,30 @@
 // @flow
 
 import React, {type Node, useCallback, useEffect, useState} from 'react';
-import MaterialUiTable from '@material-ui/core/Table';
-import TablePagination from '@material-ui/core/TablePagination';
+import TableMaterialUi from '@material-ui/core/Table';
+import TablePaginationMaterialUi from '@material-ui/core/TablePagination';
 
 import {mixedToInt, typeConverter} from '../lib/type';
 import {Spinner} from '../layout/spinner/c-spinner';
-
 import {IsRender} from '../layout/is-render/c-is-render';
 
 import tableStyle from './table.scss';
 import {EmptyTableBody} from './c-empty-table-body';
-import {EnhancedTableHead} from './c-table-head';
-import {EnhancedTableToolbar} from './c-table-toolbar';
-import {EnhancedTableBody} from './c-table-body';
+import {TableHead} from './c-table-head';
+import {TableToolbar} from './c-table-toolbar';
+import {TableBody} from './c-table-body';
 import {getDefaultState, getSavedState, saveState} from './table-helper';
-import type {EnhancedTableBodyCellType, EnhancedTablePropsType, SortDirectionType} from './table-type';
-import {enhancedTableDirection, enhancedTableRowsPerPageOptions} from './table-const';
+import type {TableBodyCellType, TablePropsType, SortDirectionType} from './table-type';
+import {tableDirection, tableRowsPerPageOptions} from './table-const';
 
-type PropsType = EnhancedTablePropsType;
+type PropsType = TablePropsType;
 
 type StateType = {|
     +order: SortDirectionType,
     +orderBy: string,
     +rowsPerPage: number,
     +pageIndex: number,
-    +list: Array<EnhancedTableBodyCellType>,
+    +list: Array<TableBodyCellType>,
     +allElementsNumber: number,
     +isInProgress: boolean,
 |};
@@ -46,7 +45,7 @@ export function Table(props: PropsType): Node {
     const [orderBy, setOrderBy] = useState<string>(state.orderBy);
     const [rowsPerPage, setRowsPerPage] = useState<number>(state.rowsPerPage);
     const [pageIndex, setPageIndex] = useState<number>(state.pageIndex);
-    const [list, setList] = useState<Array<EnhancedTableBodyCellType>>(state.list);
+    const [list, setList] = useState<Array<TableBodyCellType>>(state.list);
     const [allElementsNumber, setAllElementsNumber] = useState<number>(state.allElementsNumber);
     const [isInProgress, setIsInProgress] = useState<boolean>(state.isInProgress);
 
@@ -70,8 +69,8 @@ export function Table(props: PropsType): Node {
     }, [pageIndex, rowsPerPage, orderBy, order, fetchDataMemoized]);
 
     function handleRequestSort(event: SyntheticEvent<HTMLElement>, newOrderBy: string) {
-        const isAscOrder = orderBy === newOrderBy && order === enhancedTableDirection.desc;
-        const newOrder = isAscOrder ? enhancedTableDirection.asc : enhancedTableDirection.desc;
+        const isAscOrder = orderBy === newOrderBy && order === tableDirection.desc;
+        const newOrder = isAscOrder ? tableDirection.asc : tableDirection.desc;
 
         setOrder(newOrder);
         setOrderBy(newOrderBy);
@@ -95,19 +94,19 @@ export function Table(props: PropsType): Node {
 
     return (
         <div className={tableStyle.table_wrapper}>
-            <EnhancedTableToolbar header={header.header}/>
+            <TableToolbar header={header.header}/>
             <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
             <IsRender isRender={!isListHasItem}>
-                <MaterialUiTable key="table-no-data">
-                    <EnhancedTableHead
+                <TableMaterialUi key="table-no-data">
+                    <TableHead
                         onRequestSort={handleRequestSort}
                         order={order}
                         orderBy={orderBy}
                         rowList={header.rowList}
                     />
                     <EmptyTableBody colSpan={header.rowList.length} isInProgress={isInProgress}/>
-                </MaterialUiTable>
-                <TablePagination
+                </TableMaterialUi>
+                <TablePaginationMaterialUi
                     backIconButtonProps={{'aria-label': 'Previous Page'}}
                     component="div"
                     count={allElementsNumber}
@@ -117,20 +116,20 @@ export function Table(props: PropsType): Node {
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                     page={pageIndex}
                     rowsPerPage={rowsPerPage}
-                    rowsPerPageOptions={enhancedTableRowsPerPageOptions}
+                    rowsPerPageOptions={tableRowsPerPageOptions}
                 />
             </IsRender>
             <IsRender isRender={isListHasItem}>
-                <MaterialUiTable key="table">
-                    <EnhancedTableHead
+                <TableMaterialUi key="table">
+                    <TableHead
                         onRequestSort={handleRequestSort}
                         order={order}
                         orderBy={orderBy}
                         rowList={header.rowList}
                     />
-                    <EnhancedTableBody header={header} table={{rowList: list}}/>
-                </MaterialUiTable>
-                <TablePagination
+                    <TableBody header={header} table={{rowList: list}}/>
+                </TableMaterialUi>
+                <TablePaginationMaterialUi
                     backIconButtonProps={{'aria-label': 'Previous Page'}}
                     component="div"
                     count={allElementsNumber}
@@ -140,7 +139,7 @@ export function Table(props: PropsType): Node {
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                     page={pageIndex}
                     rowsPerPage={rowsPerPage}
-                    rowsPerPageOptions={enhancedTableRowsPerPageOptions}
+                    rowsPerPageOptions={tableRowsPerPageOptions}
                 />
             </IsRender>
         </div>

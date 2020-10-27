@@ -1,9 +1,9 @@
 // @flow
 
-export const enhancedTableRowsPerPageOptions = [5, 10, 25, 50, 100, 1e3, 5e3, 10e3];
-export const defaultRowPerPage: number = enhancedTableRowsPerPageOptions[4];
+export const tableRowsPerPageOptions = [5, 10, 25, 50, 100, 1e3, 5e3, 10e3];
+export const defaultRowPerPage: number = tableRowsPerPageOptions[4];
 
-export const enhancedTableDirection = {
+export const tableDirection = {
     asc: 'asc',
     desc: 'desc',
 };
