@@ -33,22 +33,16 @@ $ui-unit: 8px;
     padding: $ui-unit;
 }
 
-%table-checkbox,
 .table_checkbox {
-    background-image: url('./i/checkbox.svg');
+    display: block;
     height: 24px;
     width: 24px;
-}
-
-.table_checkbox__checked {
-    @extend %table-checkbox;
-
-    background-image: url('./i/checkbox-checked.svg');
+    margin: 0 auto;
 }
 
 .sort_label {
     cursor: pointer;
-    display: block;
+    display: inline;
     padding: 0;
     margin: 0;
     border: 0;

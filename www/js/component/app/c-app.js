@@ -35,7 +35,8 @@ export function App(): Node {
             {id: 'id', align: 'left', label: 'Id', hasSort: false},
             {id: 'role', align: 'left', label: 'Role', hasSort: true},
             {id: 'login', align: 'left', label: 'Login', hasSort: true},
-            {id: 'rating', align: 'left', label: 'Rating', hasSort: true},
+            {id: 'rating', align: 'right', label: 'Rating', hasSort: true},
+            {id: 'isAdmin', align: 'center', label: 'Is admin', hasSort: true},
         ],
     };
 
