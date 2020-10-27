@@ -11,9 +11,9 @@ import {IsRender} from '../layout/is-render/c-is-render';
 
 import tableStyle from './table.scss';
 import {EmptyTableBody} from './c-empty-table-body';
-import {EnhancedTableHead} from './c-enhanced-table-head';
-import {EnhancedTableToolbar} from './c-enhanced-table-toolbar';
-import {EnhancedTableBody} from './c-enhanced-table-body';
+import {EnhancedTableHead} from './c-table-head';
+import {EnhancedTableToolbar} from './c-table-toolbar';
+import {EnhancedTableBody} from './c-table-body';
 import {getDefaultState, getSavedState, saveState} from './table-helper';
 import type {EnhancedTableBodyCellType, EnhancedTablePropsType, SortDirectionType} from './table-type';
 import {enhancedTableDirection, enhancedTableRowsPerPageOptions} from './table-const';
