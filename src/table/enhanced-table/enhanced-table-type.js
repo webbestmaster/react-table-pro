@@ -47,7 +47,7 @@ export type EnhancedTableGetDataType = (
     refreshTable: () => Promise<mixed>,
 ) => Promise<EnhancedTableGetDataResultType>;
 
-export type EnhancedTablePropsType = {
+export type EnhancedTablePropsType = {|
     +getData: EnhancedTableGetDataType,
     +header: EnhancedTableHeaderType,
-};
+|};

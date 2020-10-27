@@ -15,10 +15,10 @@ import type {
     EnhancedTableHeaderType,
 } from './enhanced-table-type';
 
-type PropsType = {
+type PropsType = {|
     +header: EnhancedTableHeaderType,
     +table: EnhancedTableBodyType,
-};
+|};
 
 type StateType = null;
 

@@ -91,11 +91,13 @@ export function EnhancedTable(props: PropsType): Node {
         setRowsPerPage(mixedToInt(value, 0));
     }
 
+    const isListHasItem = list.length > 0;
+
     return (
         <div className={enhancedTableStyle.table_wrapper}>
             <EnhancedTableToolbar header={header.header}/>
             <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
-            <IsRender isRender={list.length === 0}>
+            <IsRender isRender={!isListHasItem}>
                 <Table key="table-no-data">
                     <EnhancedTableHead
                         onRequestSort={handleRequestSort}
@@ -118,7 +120,7 @@ export function EnhancedTable(props: PropsType): Node {
                     rowsPerPageOptions={enhancedTableRowsPerPageOptions}
                 />
             </IsRender>
-            <IsRender isRender={list.length > 0}>
+            <IsRender isRender={isListHasItem}>
                 <Table key="table">
                     <EnhancedTableHead
                         onRequestSort={handleRequestSort}
@@ -126,7 +128,7 @@ export function EnhancedTable(props: PropsType): Node {
                         orderBy={orderBy}
                         rowList={header.rowList}
                     />
-                    <EnhancedTableBody header={header} isInProgress={isInProgress} table={{rowList: list}}/>
+                    <EnhancedTableBody header={header} table={{rowList: list}}/>
                 </Table>
                 <TablePagination
                     backIconButtonProps={{'aria-label': 'Previous Page'}}
