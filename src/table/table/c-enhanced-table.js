@@ -4,13 +4,13 @@ import React, {type Node, useCallback, useEffect, useState} from 'react';
 import Table from '@material-ui/core/Table';
 import TablePagination from '@material-ui/core/TablePagination';
 
-import {EmptyTableBody} from '../empty-table-body/c-empty-table-body';
 import {mixedToInt, typeConverter} from '../../lib/type';
 import {Spinner} from '../../layout/spinner/c-spinner';
 
 import {IsRender} from '../../layout/is-render/c-is-render';
 
 import enhancedTableStyle from './enhanced-table.scss';
+import {EmptyTableBody} from './c-empty-table-body';
 import {EnhancedTableHead} from './c-enhanced-table-head';
 import {EnhancedTableToolbar} from './c-enhanced-table-toolbar';
 import {EnhancedTableBody} from './c-enhanced-table-body';
