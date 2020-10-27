@@ -11,4 +11,4 @@ export type {
     EnhancedTableHeaderType,
     EnhancedTableHeaderCellType,
     EnhancedTableCellAlignType,
-} from './table/enhanced-table-type';
+} from './table/table-type';

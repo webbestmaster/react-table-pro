@@ -4,13 +4,9 @@
 
 import {isNumber, isString} from '../lib/is';
 
-import {defaultRowPerPage, enhancedTableDirection} from './enhanced-table-const';
+import {defaultRowPerPage, enhancedTableDirection} from './table-const';
 
-import type {
-    EnhancedTableHeaderCellType,
-    EnhancedTablePropsType,
-    EnhancedTableSavedStateType,
-} from './enhanced-table-type';
+import type {EnhancedTableHeaderCellType, EnhancedTablePropsType, EnhancedTableSavedStateType} from './table-type';
 
 export function getDefaultState(props: EnhancedTablePropsType): EnhancedTableSavedStateType {
     return {

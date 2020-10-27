@@ -14,7 +14,7 @@ import type {
     EnhancedTableBodyType,
     EnhancedTableHeaderCellType,
     EnhancedTableHeaderType,
-} from './enhanced-table-type';
+} from './table-type';
 
 type PropsType = {|
     +header: EnhancedTableHeaderType,

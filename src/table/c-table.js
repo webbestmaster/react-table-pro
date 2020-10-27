@@ -14,9 +14,9 @@ import {EmptyTableBody} from './c-empty-table-body';
 import {EnhancedTableHead} from './c-enhanced-table-head';
 import {EnhancedTableToolbar} from './c-enhanced-table-toolbar';
 import {EnhancedTableBody} from './c-enhanced-table-body';
-import {getDefaultState, getSavedState, saveState} from './enhanced-table-helper';
-import type {EnhancedTableBodyCellType, EnhancedTablePropsType, SortDirectionType} from './enhanced-table-type';
-import {enhancedTableDirection, enhancedTableRowsPerPageOptions} from './enhanced-table-const';
+import {getDefaultState, getSavedState, saveState} from './table-helper';
+import type {EnhancedTableBodyCellType, EnhancedTablePropsType, SortDirectionType} from './table-type';
+import {enhancedTableDirection, enhancedTableRowsPerPageOptions} from './table-const';
 
 type PropsType = EnhancedTablePropsType;
 
