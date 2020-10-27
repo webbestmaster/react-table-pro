@@ -1,6 +1,7 @@
 // @flow
 
-export {EnhancedTable as Table} from './table/c-enhanced-table';
+export {Table} from './table/c-table';
+
 export type {
     SortDirectionType,
     EnhancedTableGetDataResultType,

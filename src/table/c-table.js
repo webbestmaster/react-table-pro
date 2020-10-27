@@ -1,7 +1,7 @@
 // @flow
 
 import React, {type Node, useCallback, useEffect, useState} from 'react';
-import Table from '@material-ui/core/Table';
+import MaterialUiTable from '@material-ui/core/Table';
 import TablePagination from '@material-ui/core/TablePagination';
 
 import {mixedToInt, typeConverter} from '../lib/type';
@@ -30,7 +30,7 @@ type StateType = {|
     +isInProgress: boolean,
 |};
 
-export function EnhancedTable(props: PropsType): Node {
+export function Table(props: PropsType): Node {
     const {getData, header} = props;
 
     const state: StateType = {
@@ -98,7 +98,7 @@ export function EnhancedTable(props: PropsType): Node {
             <EnhancedTableToolbar header={header.header}/>
             <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
             <IsRender isRender={!isListHasItem}>
-                <Table key="table-no-data">
+                <MaterialUiTable key="table-no-data">
                     <EnhancedTableHead
                         onRequestSort={handleRequestSort}
                         order={order}
@@ -106,7 +106,7 @@ export function EnhancedTable(props: PropsType): Node {
                         rowList={header.rowList}
                     />
                     <EmptyTableBody colSpan={header.rowList.length} isInProgress={isInProgress}/>
-                </Table>
+                </MaterialUiTable>
                 <TablePagination
                     backIconButtonProps={{'aria-label': 'Previous Page'}}
                     component="div"
@@ -121,7 +121,7 @@ export function EnhancedTable(props: PropsType): Node {
                 />
             </IsRender>
             <IsRender isRender={isListHasItem}>
-                <Table key="table">
+                <MaterialUiTable key="table">
                     <EnhancedTableHead
                         onRequestSort={handleRequestSort}
                         order={order}
@@ -129,7 +129,7 @@ export function EnhancedTable(props: PropsType): Node {
                         rowList={header.rowList}
                     />
                     <EnhancedTableBody header={header} table={{rowList: list}}/>
-                </Table>
+                </MaterialUiTable>
                 <TablePagination
                     backIconButtonProps={{'aria-label': 'Previous Page'}}
                     component="div"
