@@ -9,7 +9,7 @@ import {Spinner} from '../layout/spinner/c-spinner';
 
 import {IsRender} from '../layout/is-render/c-is-render';
 
-import enhancedTableStyle from './enhanced-table.scss';
+import tableStyle from './table.scss';
 import {EmptyTableBody} from './c-empty-table-body';
 import {EnhancedTableHead} from './c-enhanced-table-head';
 import {EnhancedTableToolbar} from './c-enhanced-table-toolbar';
@@ -94,7 +94,7 @@ export function Table(props: PropsType): Node {
     const isListHasItem = list.length > 0;
 
     return (
-        <div className={enhancedTableStyle.table_wrapper}>
+        <div className={tableStyle.table_wrapper}>
             <EnhancedTableToolbar header={header.header}/>
             <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
             <IsRender isRender={!isListHasItem}>

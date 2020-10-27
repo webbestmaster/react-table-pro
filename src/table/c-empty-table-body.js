@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 import {IsRender} from '../layout/is-render/c-is-render';
 
-import enhancedTableStyle from './enhanced-table.scss';
+import tableStyle from './table.scss';
 
 type PropsType = {|
     +colSpan: number,
@@ -22,13 +22,9 @@ export function EmptyTableBody(props: PropsType): Node {
     return (
         <TableBody>
             <TableRow>
-                <TableCell className={enhancedTableStyle.empty_table_cell} colSpan={colSpan}>
+                <TableCell className={tableStyle.empty_table_cell} colSpan={colSpan}>
                     <IsRender isRender={!isInProgress}>
-                        <Typography
-                            align="center"
-                            className={enhancedTableStyle.empty_table_body_cell_content}
-                            variant="h6"
-                        >
+                        <Typography align="center" className={tableStyle.empty_table_body_cell_content} variant="h6">
                             [ Empty ]
                         </Typography>
                     </IsRender>

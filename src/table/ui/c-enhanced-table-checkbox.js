@@ -2,7 +2,7 @@
 
 import React, {type Node} from 'react';
 
-import style from '../enhanced-table.scss';
+import tableStyle from '../table.scss';
 
 type PropsType = {|
     +isChecked: boolean,
@@ -19,7 +19,7 @@ export function EnhancedTableCheckbox(props: PropsType): Node {
 
     return (
         <svg
-            className={style.table_checkbox}
+            className={tableStyle.table_checkbox}
             height="24px"
             version="1.1"
             viewBox="0 0 24 24"

@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 
 import type {EnhancedTableHeaderCellType, OnRequestSortCallBackType, SortDirectionType} from './enhanced-table-type';
-import style from './enhanced-table.scss';
+import tableStyle from './table.scss';
 
 type PropsType = {|
     +onRequestSort: OnRequestSortCallBackType,
@@ -42,14 +42,14 @@ export class EnhancedTableHead extends Component<PropsType, StateType> {
 
         if (orderBy === rowId) {
             return (
-                <TableSortLabel active className={style.sort_label} direction={order} onClick={handleSort}>
+                <TableSortLabel active className={tableStyle.sort_label} direction={order} onClick={handleSort}>
                     {content}
                 </TableSortLabel>
             );
         }
 
         return (
-            <button className={style.sort_label} onClick={handleSort} type="button">
+            <button className={tableStyle.sort_label} onClick={handleSort} type="button">
                 {content}
             </button>
         );
