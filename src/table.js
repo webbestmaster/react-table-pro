@@ -5,4 +5,9 @@ export type {
     SortDirectionType,
     EnhancedTableGetDataResultType,
     EnhancedTableBodyCellType,
+    EnhancedTablePropsType,
+    EnhancedTableGetDataType,
+    EnhancedTableHeaderType,
+    EnhancedTableHeaderCellType,
+    EnhancedTableCellAlignType,
 } from './table/enhanced-table/enhanced-table-type';
