@@ -5,11 +5,9 @@ import TableBodyMaterialUi from '@material-ui/core/TableBody/TableBody';
 import TableRowMaterialUi from '@material-ui/core/TableRow/TableRow';
 import TableCellMaterialUi from '@material-ui/core/TableCell/TableCell';
 
-import {isBoolean} from '../lib/is';
-
-import {Checkbox} from './ui/c-checkbox';
-
-import type {TableBodyCellType, TableBodyType, TableHeaderCellType, TableHeaderType} from './table-type';
+import {isBoolean} from '../../lib/is';
+import {CheckMark} from '../ui/check-mark/c-check-mark';
+import type {TableBodyCellType, TableBodyType, TableHeaderCellType, TableHeaderType} from '../table-type';
 
 type PropsType = {|
     +header: TableHeaderType,
@@ -25,7 +23,7 @@ export class TableBody extends Component<PropsType, StateType> {
         const cellValue = row[cellName];
 
         if (isBoolean(cellValue)) {
-            return <Checkbox isChecked={cellValue}/>;
+            return <CheckMark isChecked={cellValue}/>;
         }
 
         return cellValue;

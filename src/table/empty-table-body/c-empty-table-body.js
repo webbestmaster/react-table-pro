@@ -4,11 +4,10 @@ import React, {type Node} from 'react';
 import TableBodyMaterialUi from '@material-ui/core/TableBody';
 import TableRowMaterialUi from '@material-ui/core/TableRow';
 import TableCellMaterialUi from '@material-ui/core/TableCell';
-import TypographyMaterialUi from '@material-ui/core/Typography';
 
-import {IsRender} from '../layout/is-render/c-is-render';
+import {IsRender} from '../../layout/is-render/c-is-render';
 
-import tableStyle from './table.scss';
+import emptyTableBodyStyle from './empty-table-body.scss';
 
 type PropsType = {|
     +colSpan: number,
@@ -22,15 +21,9 @@ export function EmptyTableBody(props: PropsType): Node {
     return (
         <TableBodyMaterialUi>
             <TableRowMaterialUi>
-                <TableCellMaterialUi className={tableStyle.empty_table_cell} colSpan={colSpan}>
+                <TableCellMaterialUi className={emptyTableBodyStyle.empty_table_cell} colSpan={colSpan}>
                     <IsRender isRender={!isInProgress}>
-                        <TypographyMaterialUi
-                            align="center"
-                            className={tableStyle.empty_table_body_cell_content}
-                            variant="h6"
-                        >
-                            [ Empty ]
-                        </TypographyMaterialUi>
+                        <p className={emptyTableBodyStyle.empty_table_body_cell_content}>&empty;</p>
                     </IsRender>
                 </TableCellMaterialUi>
             </TableRowMaterialUi>

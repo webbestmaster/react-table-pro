@@ -8,7 +8,7 @@ type PropsType = {|
     +header: string,
 |};
 
-export function TableToolbar(props: PropsType): Node {
+export function TableHeader(props: PropsType): Node {
     const {header} = props;
 
     return (

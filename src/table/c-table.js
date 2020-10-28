@@ -9,13 +9,13 @@ import {Spinner} from '../layout/spinner/c-spinner';
 import {IsRender} from '../layout/is-render/c-is-render';
 
 import tableStyle from './table.scss';
-import {EmptyTableBody} from './c-empty-table-body';
-import {TableHead} from './c-table-head';
-import {TableToolbar} from './c-table-toolbar';
-import {TableBody} from './c-table-body';
+import {EmptyTableBody} from './empty-table-body/c-empty-table-body';
+import {TableHead} from './table-head/c-table-head';
+import {TableHeader} from './table-header/c-table-header';
+import {TableBody} from './table-body/c-table-body';
 import {getDefaultState, getSavedState, saveState} from './table-helper';
 import type {TableBodyCellType, TablePropsType, SortDirectionType} from './table-type';
-import {tableDirection, tableRowsPerPageOptions} from './table-const';
+import {sortDirection, tableRowsPerPageOptions} from './table-const';
 
 type PropsType = TablePropsType;
 
@@ -69,8 +69,9 @@ export function Table(props: PropsType): Node {
     }, [pageIndex, rowsPerPage, orderBy, order, fetchDataMemoized]);
 
     function handleRequestSort(event: SyntheticEvent<HTMLElement>, newOrderBy: string) {
-        const isAscOrder = orderBy === newOrderBy && order === tableDirection.desc;
-        const newOrder = isAscOrder ? tableDirection.asc : tableDirection.desc;
+        const {asc, desc} = sortDirection;
+        const isAscOrder = orderBy === newOrderBy && order === desc;
+        const newOrder = isAscOrder ? asc : desc;
 
         setOrder(newOrder);
         setOrderBy(newOrderBy);
@@ -94,7 +95,7 @@ export function Table(props: PropsType): Node {
 
     return (
         <div className={tableStyle.table_wrapper}>
-            <TableToolbar header={header.header}/>
+            <TableHeader header={header.header}/>
             <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
             <IsRender isRender={!isListHasItem}>
                 <TableMaterialUi key="table-no-data">

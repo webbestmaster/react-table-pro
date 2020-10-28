@@ -15,5 +15,3 @@ if (nodeWrapper !== null) {
 } else {
     console.error('Can not find nodeWrapper');
 }
-
-console.log('audio player pro');

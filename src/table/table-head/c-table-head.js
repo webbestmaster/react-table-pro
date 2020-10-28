@@ -6,8 +6,9 @@ import TableRowMaterialUi from '@material-ui/core/TableRow';
 import TableCellMaterialUi from '@material-ui/core/TableCell';
 import TableSortLabelMaterialUi from '@material-ui/core/TableSortLabel';
 
-import type {TableHeaderCellType, OnRequestSortCallBackType, SortDirectionType} from './table-type';
-import tableStyle from './table.scss';
+import type {TableHeaderCellType, OnRequestSortCallBackType, SortDirectionType} from '../table-type';
+
+import tableHeadStyle from './table-head.scss';
 
 type PropsType = {|
     +onRequestSort: OnRequestSortCallBackType,
@@ -44,7 +45,7 @@ export class TableHead extends Component<PropsType, StateType> {
             return (
                 <TableSortLabelMaterialUi
                     active
-                    className={tableStyle.sort_label}
+                    className={tableHeadStyle.sort_label}
                     direction={order}
                     onClick={handleSort}
                 >
@@ -54,7 +55,7 @@ export class TableHead extends Component<PropsType, StateType> {
         }
 
         return (
-            <button className={tableStyle.sort_label} onClick={handleSort} type="button">
+            <button className={tableHeadStyle.sort_label} onClick={handleSort} type="button">
                 {content}
             </button>
         );

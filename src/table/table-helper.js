@@ -4,12 +4,12 @@
 
 import {isNumber, isString} from '../lib/is';
 
-import {defaultRowPerPage, tableDirection} from './table-const';
+import {defaultRowPerPage, sortDirection} from './table-const';
 import type {TableHeaderCellType, TablePropsType, TableSavedStateType} from './table-type';
 
 export function getDefaultState(props: TablePropsType): TableSavedStateType {
     return {
-        order: tableDirection.asc,
+        order: sortDirection.asc,
         orderBy: props.header.rowList[0].id,
         rowsPerPage: defaultRowPerPage,
     };
@@ -25,9 +25,10 @@ function getTableKey(props: TablePropsType): string {
 export function getSavedState(props: TablePropsType): TableSavedStateType {
     const tableKey = getTableKey(props);
     const {order, orderBy, rowsPerPage} = JSON.parse(localStorage.getItem(tableKey) || '{}');
+    const {asc, desc} = sortDirection;
 
     return {
-        order: order === tableDirection.desc ? tableDirection.desc : tableDirection.asc,
+        order: order === desc ? desc : asc,
         orderBy: isString(orderBy) ? orderBy : props.header.rowList[0].id,
         rowsPerPage: isNumber(rowsPerPage) ? rowsPerPage : defaultRowPerPage,
     };
