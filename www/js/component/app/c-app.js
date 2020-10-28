@@ -44,7 +44,7 @@ const tableHeader = {
     // title of table, string, required
     title: 'User list',
     // list of columns, required
-    rowList: [
+    columnList: [
         {
             // unique field name in ApiResultType, string, required
             id: 'id',

@@ -31,7 +31,7 @@ type StateType = {|
 
 export function Table(props: PropsType): Node {
     const {getData, header} = props;
-    const {rowList, title} = header;
+    const {columnList, title} = header;
 
     const state: StateType = {
         ...getDefaultState(props),
@@ -100,8 +100,8 @@ export function Table(props: PropsType): Node {
             <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
             <IsRender isRender={!isListHasItem}>
                 <TableMaterialUi key="table-no-data">
-                    <TableHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} rowList={rowList}/>
-                    <EmptyTableBody colSpan={rowList.length} isInProgress={isInProgress}/>
+                    <TableHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} rowList={columnList}/>
+                    <EmptyTableBody colSpan={columnList.length} isInProgress={isInProgress}/>
                 </TableMaterialUi>
                 <TablePaginationMaterialUi
                     backIconButtonProps={{'aria-label': 'Previous Page'}}
@@ -118,7 +118,7 @@ export function Table(props: PropsType): Node {
             </IsRender>
             <IsRender isRender={isListHasItem}>
                 <TableMaterialUi key="table">
-                    <TableHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} rowList={rowList}/>
+                    <TableHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} rowList={columnList}/>
                     <TableBody header={header} table={{rowList: list}}/>
                 </TableMaterialUi>
                 <TablePaginationMaterialUi

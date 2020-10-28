@@ -21,7 +21,7 @@ export type TableHeaderCellType = {|
 
 export type TableHeaderType = {|
     +title: string,
-    +rowList: Array<TableHeaderCellType>,
+    +columnList: Array<TableHeaderCellType>,
 |};
 
 export type TableBodyCellType = {

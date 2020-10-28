@@ -10,14 +10,14 @@ import type {TableHeaderCellType, TablePropsType, TableSavedStateType} from './t
 export function getDefaultState(props: TablePropsType): TableSavedStateType {
     return {
         order: sortDirection.asc,
-        orderBy: props.header.rowList[0].id,
+        orderBy: props.header.columnList[0].id,
         rowsPerPage: defaultRowPerPage,
     };
 }
 
 function getTableKey(props: TablePropsType): string {
     const title = props.header.title;
-    const columns = props.header.rowList.map((column: TableHeaderCellType): string => column.id).join(' | ');
+    const columns = props.header.columnList.map((column: TableHeaderCellType): string => column.id).join(' | ');
 
     return `Table "${title}" - ${columns}`;
 }
@@ -29,7 +29,7 @@ export function getSavedState(props: TablePropsType): TableSavedStateType {
 
     return {
         order: order === desc ? desc : asc,
-        orderBy: isString(orderBy) ? orderBy : props.header.rowList[0].id,
+        orderBy: isString(orderBy) ? orderBy : props.header.columnList[0].id,
         rowsPerPage: isNumber(rowsPerPage) ? rowsPerPage : defaultRowPerPage,
     };
 }

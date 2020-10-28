@@ -43,11 +43,11 @@ export class TableBody extends Component<PropsType, StateType> {
     renderRow(row: TableBodyCellType, index: number): Node {
         const {props} = this;
         const {header} = props;
-        const {rowList} = header;
+        const {columnList} = header;
 
         return (
             <TableRowMaterialUi hover key={index} tabIndex={-1}>
-                {rowList.map((headerCell: TableHeaderCellType): Node => this.renderCell(headerCell, row))}
+                {columnList.map((headerCell: TableHeaderCellType): Node => this.renderCell(headerCell, row))}
             </TableRowMaterialUi>
         );
     }
