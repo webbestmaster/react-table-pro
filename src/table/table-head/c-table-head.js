@@ -14,34 +14,33 @@ type PropsType = {|
     +onRequestSort: OnRequestSortCallBackType,
     +order: SortDirectionType,
     +orderBy: string,
-    +rowList: Array<TableHeaderCellType>,
+    +columnList: Array<TableHeaderCellType>,
 |};
 
 type StateType = null;
 
 export class TableHead extends Component<PropsType, StateType> {
-    createSortHandler(rowId: string): (event: SyntheticEvent<HTMLElement>) => mixed {
+    createSortHandler(columnId: string): (event: SyntheticEvent<HTMLElement>) => mixed {
         return (event: SyntheticEvent<HTMLElement>) => {
             const {props} = this;
             const {onRequestSort} = props;
 
-            onRequestSort(event, rowId);
+            onRequestSort(event, columnId);
         };
     }
 
-    renderSortLabel(row: TableHeaderCellType): Node {
+    renderSortLabel(column: TableHeaderCellType): Node {
         const {props} = this;
         const {order, orderBy} = props;
-        const rowId = row.id;
-        const content = row.label;
+        const {id, label, hasSort} = column;
 
-        if (row.hasSort === false) {
-            return <span>{content}</span>;
+        if (hasSort === false) {
+            return <span>{label}</span>;
         }
 
-        const handleSort = this.createSortHandler(rowId);
+        const handleSort = this.createSortHandler(id);
 
-        if (orderBy === rowId) {
+        if (orderBy === id) {
             return (
                 <TableSortLabelMaterialUi
                     active
@@ -49,34 +48,36 @@ export class TableHead extends Component<PropsType, StateType> {
                     direction={order}
                     onClick={handleSort}
                 >
-                    {content}
+                    {label}
                 </TableSortLabelMaterialUi>
             );
         }
 
         return (
             <button className={tableHeadStyle.sort_label} onClick={handleSort} type="button">
-                {content}
+                {label}
             </button>
         );
     }
 
-    renderCell(row: TableHeaderCellType): Node {
+    renderCell(column: TableHeaderCellType): Node {
+        const {id, align} = column;
+
         return (
-            <TableCellMaterialUi align={row.align} key={row.id}>
-                {this.renderSortLabel(row)}
+            <TableCellMaterialUi align={align} key={id}>
+                {this.renderSortLabel(column)}
             </TableCellMaterialUi>
         );
     }
 
     render(): Node {
         const {props} = this;
-        const {rowList} = props;
+        const {columnList} = props;
 
         return (
             <TableHeadMaterialUi>
                 <TableRowMaterialUi>
-                    {rowList.map((row: TableHeaderCellType): Node => this.renderCell(row))}
+                    {columnList.map((column: TableHeaderCellType): Node => this.renderCell(column))}
                 </TableRowMaterialUi>
             </TableHeadMaterialUi>
         );

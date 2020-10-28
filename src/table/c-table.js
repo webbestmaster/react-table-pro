@@ -100,7 +100,12 @@ export function Table(props: PropsType): Node {
             <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
             <IsRender isRender={!isListHasItem}>
                 <TableMaterialUi key="table-no-data">
-                    <TableHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} rowList={columnList}/>
+                    <TableHead
+                        columnList={columnList}
+                        onRequestSort={handleRequestSort}
+                        order={order}
+                        orderBy={orderBy}
+                    />
                     <EmptyTableBody colSpan={columnList.length} isInProgress={isInProgress}/>
                 </TableMaterialUi>
                 <TablePaginationMaterialUi
@@ -118,7 +123,12 @@ export function Table(props: PropsType): Node {
             </IsRender>
             <IsRender isRender={isListHasItem}>
                 <TableMaterialUi key="table">
-                    <TableHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} rowList={columnList}/>
+                    <TableHead
+                        columnList={columnList}
+                        onRequestSort={handleRequestSort}
+                        order={order}
+                        orderBy={orderBy}
+                    />
                     <TableBody header={header} table={{rowList: list}}/>
                 </TableMaterialUi>
                 <TablePaginationMaterialUi
