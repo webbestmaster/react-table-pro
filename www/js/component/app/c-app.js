@@ -20,7 +20,8 @@ import type {
 import appStyle from './app.scss';
 
 type ApiResultType = {
-    // equals for TableBodyCellType
+    // ApiResultType are equals for TableBodyCellType for example only
+    // you can use your own structure api's data
     +[key: string]: string | number | boolean | Node,
 };
 
@@ -33,6 +34,8 @@ export function getDataList(
 ): Promise<Array<ApiResultType>> {
     const query = `page=${pageIndex + 1}&limit=${rowsPerPage}&sortBy=${sortBy}&order=${order}`;
 
+    // you should catch api's error here :)
+
     return (
         fetch('https://5f9704ad11ab98001603b694.mockapi.io/user?' + query)
             // $FlowFixMe
@@ -43,7 +46,7 @@ export function getDataList(
 const tableHeader = {
     // title of table, string, required
     title: 'User list',
-    // list of columns, required
+    // list of column descriptions, required
     columnList: [
         {
             // unique field name in ApiResultType, string, required
@@ -75,7 +78,7 @@ async function tableGetUserList(
     return {
         // all elements number, number, required
         allElementsNumber: 50,
-        // Array of table cell data, Array<ApiResultType>, required
+        // Array of table cell data, Array<TableBodyCellType>, required
         list: dataList,
     };
 }

@@ -96,7 +96,7 @@ export function Table(props: PropsType): Node {
 
     return (
         <div className={tableStyle.table_wrapper}>
-            <TableHeader header={title}/>
+            <TableHeader title={title}/>
             <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
             <IsRender isRender={!isListHasItem}>
                 <TableMaterialUi key="table-no-data">

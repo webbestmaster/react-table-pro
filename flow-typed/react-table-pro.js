@@ -32,7 +32,7 @@ declare module 'react-table-pro' {
         rowsPerPage: number,
         orderBy: string,
         order: SortDirectionType,
-        refreshTable: () => Promise<mixed>,
+        refreshTable: () => Promise<void>,
     ) => Promise<TableGetDataResultType>;
 
     declare export type TablePropsType = {|

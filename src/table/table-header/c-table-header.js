@@ -5,15 +5,15 @@ import TypographyMaterialUi from '@material-ui/core/Typography/Typography';
 import BoxMaterialUi from '@material-ui/core/Box';
 
 type PropsType = {|
-    +header: string,
+    +title: string,
 |};
 
 export function TableHeader(props: PropsType): Node {
-    const {header} = props;
+    const {title} = props;
 
     return (
         <BoxMaterialUi p={2}>
-            <TypographyMaterialUi variant="h5">{header}</TypographyMaterialUi>
+            <TypographyMaterialUi variant="h5">{title}</TypographyMaterialUi>
         </BoxMaterialUi>
     );
 }
