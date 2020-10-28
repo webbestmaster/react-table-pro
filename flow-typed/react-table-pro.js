@@ -1,63 +1,47 @@
 // @flow
 
 declare module 'react-table-pro' {
+    declare export type SortDirectionType = 'asc' | 'desc';
 
-    /*
-    declare export type AudioPlayerListItemArtworkType = {|
-        +src: string, // 'https://dummyimage.com/96x96',
-        +sizes: string, // '96x96',
-        +type: string, // 'image/png',
+    declare export type TableCellAlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify';
+
+    declare export type TableHeaderCellType = {|
+        +id: string,
+        +label: string,
+        +align: TableCellAlignType,
+        +hasSort: boolean,
     |};
 
-    declare export type MediaMetadataType = {|
-        +title: string,
-        +artist?: string,
-        +album?: string,
-        +artwork?: Array<AudioPlayerListItemArtworkType>,
+    declare export type TableHeaderType = {|
+        +header: string,
+        +rowList: Array<TableHeaderCellType>,
     |};
 
-    declare export type TrackType = {|
-        +src: string,
-        +mediaMetadata?: MediaMetadataType,
+    declare export type TableBodyCellType = {
         // eslint-disable-next-line id-match
-        +content?: React$Node,
+        +[key: string]: string | number | boolean | React$Node,
+    };
+
+    declare export type TableGetDataResultType = {|
+        +list: Array<TableBodyCellType>,
+        +allElementsNumber: number,
     |};
 
-    declare export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
+    declare export type TableGetDataType = (
+        pageIndex: number,
+        rowsPerPage: number,
+        orderBy: string,
+        order: SortDirectionType,
+        refreshTable: () => Promise<mixed>,
+    ) => Promise<TableGetDataResultType>;
 
-    declare export type DefaultAudioPlayerStateType = {|
-        +isTrackListOpen?: boolean,
-        +activeIndex?: number,
-        +isShuffleOn?: boolean,
-        +isMuted?: boolean,
-        +repeatingState?: PlayerRepeatingStateType,
-    |};
-
-    // eslint-disable-next-line id-match
-    declare export var AudioPlayerControlSprite: React$ComponentType<{}>;
-
-    declare export type AudioPropsType = {|
-        +src: string,
-        +mediaMetadata?: MediaMetadataType,
-        +className?: string,
-        +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
-        +downloadFileName?: string,
-        +useRepeatButton?: boolean,
+    declare export type TablePropsType = {|
+        +getData: TableGetDataType,
+        +header: TableHeaderType,
     |};
 
     // eslint-disable-next-line id-match
-    declare export var Audio: React$ComponentType<AudioPropsType>;
-
-    declare export type AudioPlayerPropsType = {|
-        +trackList: Array<TrackType>,
-        +className?: string,
-        +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
-        +defaultState?: DefaultAudioPlayerStateType,
-    |};
-
-    // eslint-disable-next-line id-match
-    declare export var AudioPlayer: React$ComponentType<AudioPlayerPropsType>;
-*/
+    declare export var Table: React$ComponentType<TablePropsType>;
 }
 
 declare module 'react-table-pro/dist/style.css' {

@@ -1,55 +1,45 @@
 declare module 'react-table-pro' {
-/*
-    export interface AudioPlayerListItemArtworkType {
-        src: string, // 'https://dummyimage.com/96x96',
-        sizes: string, // '96x96',
-        type: string, // 'image/png',
+    export type SortDirectionType = 'asc' | 'desc';
+
+    export type TableCellAlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify';
+
+    export interface TableHeaderCellType {
+        id: string,
+        label: string,
+        align: TableCellAlignType,
+        hasSort: boolean,
     }
 
-    export interface MediaMetadataType {
-        title: string,
-        artist?: string,
-        album?: string,
-        artwork?: Array<AudioPlayerListItemArtworkType>,
+    export interface TableHeaderType {
+        header: string,
+        rowList: Array<TableHeaderCellType>,
     }
 
-    export interface TrackType {
-        src: string,
-        mediaMetadata?: MediaMetadataType,
+    export interface TableBodyCellType {
         // eslint-disable-next-line id-match
-        content?: React.ReactNode,
+        [key: string]: string | number | boolean | React.ReactNode,
     }
 
-    export interface DefaultAudioPlayerStateType {
-        isTrackListOpen?: boolean,
-        activeIndex?: number,
-        isShuffleOn?: boolean,
-        isMuted?: boolean,
-        repeatingState?: 'none' | 'all' | 'one',
+    export interface TableGetDataResultType {
+        list: Array<TableBodyCellType>,
+        allElementsNumber: number,
     }
 
-    export const AudioPlayerControlSprite: React.FC<{}>;
+    export type TableGetDataType = (
+        pageIndex: number,
+        rowsPerPage: number,
+        orderBy: string,
+        order: SortDirectionType,
+        refreshTable: () => Promise<any>,
+    ) => Promise<TableGetDataResultType>;
 
-    export interface AudioPropsType {
-        src: string,
-        mediaMetadata?: MediaMetadataType,
-        className?: string,
-        onDidMount?: (audioNode: HTMLAudioElement | null) => void,
-        downloadFileName?: string,
-        useRepeatButton?: boolean,
+    export interface TablePropsType {
+        getData: TableGetDataType,
+        header: TableHeaderType,
     }
 
-    export const Audio: React.FC<AudioPropsType>;
-
-    export interface AudioPlayerPropsType {
-        trackList: Array<TrackType>,
-        className?: string,
-        onDidMount?: (audioNode: HTMLAudioElement | null) => void,
-        defaultState?: DefaultAudioPlayerStateType,
-    }
-
-    export const AudioPlayer: React.FC<AudioPlayerPropsType>;
-*/
+    // eslint-disable-next-line id-match
+    export const Table: React.FC<TablePropsType>;
 }
 
 declare module 'react-table-pro/dist/style.css' {
