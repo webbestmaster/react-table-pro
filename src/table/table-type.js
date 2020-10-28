@@ -20,7 +20,7 @@ export type TableHeaderCellType = {|
 |};
 
 export type TableHeaderType = {|
-    +header: string,
+    +title: string,
     +rowList: Array<TableHeaderCellType>,
 |};
 
@@ -44,7 +44,7 @@ export type TableGetDataType = (
     rowsPerPage: number,
     orderBy: string,
     order: SortDirectionType,
-    refreshTable: () => Promise<mixed>,
+    refreshTable: () => Promise<void>,
 ) => Promise<TableGetDataResultType>;
 
 export type TablePropsType = {|

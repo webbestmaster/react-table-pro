@@ -14,7 +14,7 @@ import {TableHead} from './table-head/c-table-head';
 import {TableHeader} from './table-header/c-table-header';
 import {TableBody} from './table-body/c-table-body';
 import {getDefaultState, getSavedState, saveState} from './table-helper';
-import type {TableBodyCellType, TablePropsType, SortDirectionType} from './table-type';
+import type {SortDirectionType, TableBodyCellType, TablePropsType} from './table-type';
 import {sortDirection, tableRowsPerPageOptions} from './table-const';
 
 type PropsType = TablePropsType;
@@ -31,6 +31,7 @@ type StateType = {|
 
 export function Table(props: PropsType): Node {
     const {getData, header} = props;
+    const {rowList, title} = header;
 
     const state: StateType = {
         ...getDefaultState(props),
@@ -95,17 +96,12 @@ export function Table(props: PropsType): Node {
 
     return (
         <div className={tableStyle.table_wrapper}>
-            <TableHeader header={header.header}/>
+            <TableHeader header={title}/>
             <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
             <IsRender isRender={!isListHasItem}>
                 <TableMaterialUi key="table-no-data">
-                    <TableHead
-                        onRequestSort={handleRequestSort}
-                        order={order}
-                        orderBy={orderBy}
-                        rowList={header.rowList}
-                    />
-                    <EmptyTableBody colSpan={header.rowList.length} isInProgress={isInProgress}/>
+                    <TableHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} rowList={rowList}/>
+                    <EmptyTableBody colSpan={rowList.length} isInProgress={isInProgress}/>
                 </TableMaterialUi>
                 <TablePaginationMaterialUi
                     backIconButtonProps={{'aria-label': 'Previous Page'}}
@@ -122,12 +118,7 @@ export function Table(props: PropsType): Node {
             </IsRender>
             <IsRender isRender={isListHasItem}>
                 <TableMaterialUi key="table">
-                    <TableHead
-                        onRequestSort={handleRequestSort}
-                        order={order}
-                        orderBy={orderBy}
-                        rowList={header.rowList}
-                    />
+                    <TableHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} rowList={rowList}/>
                     <TableBody header={header} table={{rowList: list}}/>
                 </TableMaterialUi>
                 <TablePaginationMaterialUi

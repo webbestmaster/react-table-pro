@@ -6,7 +6,7 @@ import TableRowMaterialUi from '@material-ui/core/TableRow';
 import TableCellMaterialUi from '@material-ui/core/TableCell';
 import TableSortLabelMaterialUi from '@material-ui/core/TableSortLabel';
 
-import type {TableHeaderCellType, OnRequestSortCallBackType, SortDirectionType} from '../table-type';
+import type {OnRequestSortCallBackType, SortDirectionType, TableHeaderCellType} from '../table-type';
 
 import tableHeadStyle from './table-head.scss';
 

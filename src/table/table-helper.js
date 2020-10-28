@@ -16,10 +16,10 @@ export function getDefaultState(props: TablePropsType): TableSavedStateType {
 }
 
 function getTableKey(props: TablePropsType): string {
-    const header = props.header.header;
+    const title = props.header.title;
     const columns = props.header.rowList.map((column: TableHeaderCellType): string => column.id).join(' | ');
 
-    return `Table "${header}" - ${columns}`;
+    return `Table "${title}" - ${columns}`;
 }
 
 export function getSavedState(props: TablePropsType): TableSavedStateType {
