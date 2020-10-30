@@ -1,36 +1,6 @@
-# React Audio Player Pro (XXkb gzip)
-
-[![Build Status](https://travis-ci.org/webbestmaster/react-table-pro.svg?branch=master)](https://travis-ci.org/github/webbestmaster/react-table-pro)
-[![GitHub license](https://img.shields.io/npm/l/react-table-pro)](https://github.com/webbestmaster/react-table-pro/blob/master/license)
-[![npm version](https://img.shields.io/npm/v/react-table-pro.svg?style=flat)](https://www.npmjs.com/package/react-table-pro)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-table-pro)
-[![GitHub stars](https://img.shields.io/github/stars/webbestmaster/react-table-pro?style=social&maxAge=2592000)](https://github.com/webbestmaster/react-table-pro/)
-
-
-**[Live demo](http://webbestmaster.github.io/react-table-pro)**
-
-
-## Install
-
-```bash
-npm i react-table-pro
-```
-
-
-### Typing Flow
-
-Use `./flow-typed/react-table-pro.js`.
-
-
-### Typing TypeScript
-
-Use `./@types/index.d.ts`.
-
-
-## Usage example
-
 ```javascript
 // @flow
+
 import React, {type Node} from 'react';
 import {Table} from 'react-table-pro';
 import reactTableProStyle from 'react-table-pro/dist/style.css';
@@ -58,7 +28,7 @@ export function getDataList(
     rowsPerPage: number, // number of items in response
     sortBy: string, // id of field
     order: SortDirectionType // asc or desc
-): Promise<Array<ApiResultType>> {
+): Promise&lt;Array&lt;ApiResultType&gt;&gt; {
     const query = `page=${pageIndex + 1}&limit=${rowsPerPage}&sortBy=${sortBy}&order=${order}`;
 
     // you should catch api's error here :)
@@ -66,7 +36,7 @@ export function getDataList(
     return (
         fetch('https://5f9704ad11ab98001603b694.mockapi.io/user?' + query)
             // $FlowFixMe
-            .then((data: Response): Promise<Array<ApiResultType>> => data.json())
+            .then((data: Response): Promise&lt;Array&lt;ApiResultType&gt;&gt; =&gt; data.json())
     );
 }
 
@@ -98,26 +68,25 @@ async function tableGetUserList(
     rowsPerPage: number, // number of items in response
     sortBy: string, // id of field
     order: SortDirectionType, // string: 'asc' | 'desc'
-    refreshTable: () => Promise<void> // you can save and call this function to refresh table
-): Promise<TableGetDataResultType> {
-    const dataList: Array<ApiResultType> = await getDataList(pageIndex, rowsPerPage, sortBy, order);
+    refreshTable: () =&gt; Promise&lt;void&gt; // you can save and call this function to refresh table
+): Promise&lt;TableGetDataResultType&gt; {
+    const dataList: Array&lt;ApiResultType&gt; = await getDataList(pageIndex, rowsPerPage, sortBy, order);
 
     return {
         // all elements number, number, required
         allElementsNumber: 50,
-        // Array of table cell data, Array<TableBodyCellType>, required
+        // Array of table cell data, Array&lt;TableBodyCellType&gt;, required
         list: dataList,
     };
 }
 
 export function App(): Node {
     return (
-        <Table
+        &lt;Table
             // function to get data, type TableGetDataType, required
             getData={tableGetUserList}
             // table header data, type TableHeaderType, required
             header={tableHeader}
-        />
+        /&gt;
     );
 }
-```

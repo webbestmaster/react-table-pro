@@ -4,6 +4,7 @@
 
 import React, {type Node} from 'react';
 
+import {Markdown} from '../layout/c-markdown';
 import {Table} from '../../../../src/table';
 
 import type {
@@ -17,7 +18,8 @@ import type {
     TableCellAlignType,
 } from '../../../../src/table';
 
-import appStyle from './app.scss';
+import appExampleMd from './app-example.md';
+
 
 type ApiResultType = {
     // ApiResultType are equals for TableBodyCellType for example only
@@ -85,7 +87,8 @@ async function tableGetUserList(
 
 export function App(): Node {
     return (
-        <div className={appStyle.app}>
+        <div className="example-wrapper">
+            <Markdown config={{useWrapper: false}} mdInput={appExampleMd}/>
             <Table
                 // function to get data, type TableGetDataType, required
                 getData={tableGetUserList}
