@@ -7,3 +7,13 @@
     padding: 16px;
     border-bottom: 1px solid #ccc;
 }
+
+.table_body_row {
+    &:nth-child(odd) {
+        background-color: #f6f6f6;
+    }
+
+    &:hover {
+        background-color: #e4e4e4;
+    }
+}

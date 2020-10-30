@@ -45,7 +45,7 @@ export class TableBody extends Component<PropsType, StateType> {
         const {columnList} = header;
 
         return (
-            <tr key={index}>
+            <tr className={tableBodyStyle.table_body_row} key={index}>
                 {columnList.map((headerCell: TableHeaderCellType): Node => this.renderCell(headerCell, row))}
             </tr>
         );
