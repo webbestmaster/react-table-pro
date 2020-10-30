@@ -1,0 +1,19 @@
+%table-cell-direction-arrow {
+    width: 20px;
+    height: 20px;
+    margin: 0 4px;
+    transition: linear transform 0.2s;
+    display: inline-block;
+}
+
+.table_cell_direction_arrow__asc {
+    @extend %table-cell-direction-arrow;
+
+    transform: rotateZ(180deg);
+}
+
+.table_cell_direction_arrow__desc {
+    @extend %table-cell-direction-arrow;
+
+    transform: rotateZ(0deg);
+}

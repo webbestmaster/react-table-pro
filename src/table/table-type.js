@@ -10,7 +10,7 @@ export type TableSavedStateType = {|
     +rowsPerPage: number,
 |};
 
-export type TableCellAlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify';
+export type TableCellAlignType = 'left' | 'center' | 'right';
 
 export type TableHeaderCellType = {|
     +id: string,

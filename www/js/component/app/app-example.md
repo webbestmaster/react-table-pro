@@ -49,7 +49,7 @@ const tableHeader = {
             // unique field name in ApiResultType, string, required
             id: 'id',
 
-            // aling of content, type TableCellAlignType = inherit | left | center | right | justify, required
+            // aling of content, type TableCellAlignType = left | center | right, required
             align: 'left',
 
             // column's name, string, required

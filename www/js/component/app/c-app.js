@@ -20,7 +20,6 @@ import type {
 
 import appExampleMd from './app-example.md';
 
-
 type ApiResultType = {
     // ApiResultType are equals for TableBodyCellType for example only
     // you can use your own structure api's data
@@ -54,7 +53,7 @@ const tableHeader = {
             // unique field name in ApiResultType, string, required
             id: 'id',
 
-            // aling of content, type TableCellAlignType = inherit | left | center | right | justify, required
+            // aling of content, type TableCellAlignType = left | center | right, required
             align: 'left',
 
             // column's name, string, required

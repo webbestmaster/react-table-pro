@@ -1,0 +1,23 @@
+.table_head_cell {
+    font-weight: inherit;
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+    padding: 16px;
+}
+
+
+.table_head_cell__sortable {
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.table_head_cell__content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+

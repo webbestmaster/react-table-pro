@@ -1,7 +1,7 @@
 declare module 'react-table-pro' {
     export type SortDirectionType = 'asc' | 'desc';
 
-    export type TableCellAlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify';
+    export type TableCellAlignType = 'left' | 'center' | 'right' ;
 
     export interface TableHeaderCellType {
         id: string,
