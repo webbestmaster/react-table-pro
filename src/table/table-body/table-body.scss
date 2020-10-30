@@ -1,3 +1,4 @@
+%table-body-cell,
 .table_body_cell {
     font-family: inherit;
     line-height: inherit;
@@ -5,10 +6,11 @@
     font-weight: normal;
     color: inherit;
     padding: 16px;
-    border-bottom: 1px solid #ccc;
 }
 
 .table_body_row {
+    border-bottom: 1px solid #ccc;
+
     &:nth-child(odd) {
         background-color: #f6f6f6;
     }

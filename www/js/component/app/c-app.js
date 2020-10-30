@@ -76,6 +76,8 @@ async function tableGetUserList(
 ): Promise<TableGetDataResultType> {
     const dataList: Array<ApiResultType> = await getDataList(pageIndex, rowsPerPage, sortBy, order);
 
+    // await new Promise(resolve => setTimeout(resolve, 100e3));
+
     return {
         // all elements number, number, required
         allElementsNumber: 50,
