@@ -70,7 +70,7 @@ async function tableGetUserList(
     pageIndex: number, // page index started from 0
     rowsPerPage: number, // number of items in response
     sortBy: string, // id of field
-    order: SortDirectionType, // asc or desc
+    order: SortDirectionType, // string: 'asc' | 'desc'
     refreshTable: () => Promise<void> // you can save and call this function to refresh table
 ): Promise<TableGetDataResultType> {
     const dataList: Array<ApiResultType> = await getDataList(pageIndex, rowsPerPage, sortBy, order);
