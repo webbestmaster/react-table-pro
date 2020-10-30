@@ -16,12 +16,12 @@ type PropsType = {|
 type StateType = null;
 
 export class TableHead extends Component<PropsType, StateType> {
-    createSortHandler(columnId: string): (event: SyntheticEvent<HTMLElement>) => mixed {
-        return (event: SyntheticEvent<HTMLElement>) => {
+    createSortHandler(columnId: string): () => void {
+        return () => {
             const {props} = this;
             const {onRequestSort} = props;
 
-            onRequestSort(event, columnId);
+            onRequestSort(columnId);
         };
     }
 

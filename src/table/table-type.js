@@ -32,11 +32,11 @@ export type TableBodyType = {|
     +rowList: Array<TableBodyCellType>,
 |};
 
-export type OnRequestSortCallBackType = (event: SyntheticEvent<HTMLElement>, rowId: string) => mixed;
+export type OnRequestSortCallBackType = (rowId: string) => mixed;
 
 export type TableGetDataResultType = {|
     +list: Array<TableBodyCellType>,
-    +allElementsNumber: number,
+    +count: number,
 |};
 
 export type TableGetDataType = (

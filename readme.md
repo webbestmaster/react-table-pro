@@ -104,7 +104,7 @@ async function tableGetUserList(
 
     return {
         // all elements number, number, required
-        allElementsNumber: 50,
+        count: 50,
         // Array of table cell data, Array<TableBodyCellType>, required
         list: dataList,
     };

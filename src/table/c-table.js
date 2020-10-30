@@ -15,6 +15,7 @@ import {TableBody} from './table-body/c-table-body';
 import {getDefaultState, getSavedState, saveState} from './table-helper';
 import type {SortDirectionType, TableBodyCellType, TablePropsType} from './table-type';
 import {sortDirection, tableRowsPerPageOptions} from './table-const';
+import {TablePagination} from './table-pagination/c-table-pagination';
 
 type PropsType = TablePropsType;
 
@@ -24,7 +25,7 @@ type StateType = {|
     +rowsPerPage: number,
     +pageIndex: number,
     +list: Array<TableBodyCellType>,
-    +allElementsNumber: number,
+    +count: number,
     +isInProgress: boolean,
 |};
 
@@ -37,7 +38,7 @@ export function Table(props: PropsType): Node {
         ...getSavedState(props),
         pageIndex: 0,
         list: [],
-        allElementsNumber: 0,
+        count: 0,
         isInProgress: false,
     };
 
@@ -46,7 +47,7 @@ export function Table(props: PropsType): Node {
     const [rowsPerPage, setRowsPerPage] = useState<number>(state.rowsPerPage);
     const [pageIndex, setPageIndex] = useState<number>(state.pageIndex);
     const [list, setList] = useState<Array<TableBodyCellType>>(state.list);
-    const [allElementsNumber, setAllElementsNumber] = useState<number>(state.allElementsNumber);
+    const [count, setCount] = useState<number>(state.count);
     const [isInProgress, setIsInProgress] = useState<boolean>(state.isInProgress);
 
     const fetchDataMemoized = useCallback(
@@ -56,7 +57,7 @@ export function Table(props: PropsType): Node {
             const data = await getData(pageIndex, rowsPerPage, orderBy, order, fetchData);
 
             setList(data.list);
-            setAllElementsNumber(data.allElementsNumber);
+            setCount(data.count);
             setIsInProgress(false);
 
             saveState({order, orderBy, rowsPerPage}, props);
@@ -68,7 +69,7 @@ export function Table(props: PropsType): Node {
         fetchDataMemoized().catch(console.error);
     }, [pageIndex, rowsPerPage, orderBy, order, fetchDataMemoized]);
 
-    function handleRequestSort(event: SyntheticEvent<HTMLElement>, newOrderBy: string) {
+    function handleRequestSort(newOrderBy: string) {
         const {asc, desc} = sortDirection;
         const isAscOrder = orderBy === newOrderBy && order === desc;
         const newOrder = isAscOrder ? asc : desc;
@@ -77,18 +78,12 @@ export function Table(props: PropsType): Node {
         setOrderBy(newOrderBy);
     }
 
-    function handleChangePage(event: SyntheticEvent<HTMLElement> | null, newPageIndex: number) {
+    function handleChangePage(newPageIndex: number) {
         setPageIndex(newPageIndex);
     }
 
-    function handleChangeRowsPerPage(event: SyntheticEvent<HTMLElement> | null) {
-        if (event === null) {
-            return;
-        }
-
-        const {value}: {value?: mixed} = typeConverter<{value?: mixed}>(event.target);
-
-        setRowsPerPage(mixedToInt(value, 0));
+    function handleChangeRowsPerPage(newRowsPerPage: number) {
+        setRowsPerPage(newRowsPerPage);
     }
 
     const isListHasItem = list.length > 0;
@@ -107,10 +102,19 @@ export function Table(props: PropsType): Node {
                     />
                     <EmptyTableBody colSpan={columnList.length} isInProgress={isInProgress}/>
                 </table>
+                <TablePagination
+                    count={count}
+                    onChangePageIndex={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    optionList={tableRowsPerPageOptions}
+                    pageIndex={pageIndex}
+                    rowsPerPage={rowsPerPage}
+                />
+                {/*
                 <TablePaginationMaterialUi
                     backIconButtonProps={{'aria-label': 'Previous Page'}}
                     component="div"
-                    count={allElementsNumber}
+                    count={count}
                     key="table-pagination-no-data"
                     nextIconButtonProps={{'aria-label': 'Next Page'}}
                     onChangePage={handleChangePage}
@@ -119,6 +123,7 @@ export function Table(props: PropsType): Node {
                     rowsPerPage={rowsPerPage}
                     rowsPerPageOptions={tableRowsPerPageOptions}
                 />
+*/}
             </IsRender>
             <IsRender isRender={isListHasItem}>
                 <table className={tableStyle.table} key="table">
@@ -130,10 +135,19 @@ export function Table(props: PropsType): Node {
                     />
                     <TableBody header={header} table={{rowList: list}}/>
                 </table>
+                <TablePagination
+                    count={count}
+                    onChangePageIndex={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    optionList={tableRowsPerPageOptions}
+                    pageIndex={pageIndex}
+                    rowsPerPage={rowsPerPage}
+                />
+                {/*
                 <TablePaginationMaterialUi
                     backIconButtonProps={{'aria-label': 'Previous Page'}}
                     component="div"
-                    count={allElementsNumber}
+                    count={count}
                     key="table-pagination"
                     nextIconButtonProps={{'aria-label': 'Next Page'}}
                     onChangePage={handleChangePage}
@@ -142,6 +156,7 @@ export function Table(props: PropsType): Node {
                     rowsPerPage={rowsPerPage}
                     rowsPerPageOptions={tableRowsPerPageOptions}
                 />
+*/}
             </IsRender>
         </div>
     );

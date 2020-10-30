@@ -22,7 +22,7 @@ declare module 'react-table-pro' {
 
     export interface TableGetDataResultType {
         list: Array<TableBodyCellType>,
-        allElementsNumber: number,
+        count: number,
     }
 
     export type TableGetDataType = (
