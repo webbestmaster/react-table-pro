@@ -1,13 +1,12 @@
 // @flow
 
 import React, {Component, type Node} from 'react';
-import TableBodyMaterialUi from '@material-ui/core/TableBody/TableBody';
-import TableRowMaterialUi from '@material-ui/core/TableRow/TableRow';
-import TableCellMaterialUi from '@material-ui/core/TableCell/TableCell';
 
 import {isBoolean} from '../../lib/is';
 import {CheckMark} from '../ui/check-mark/c-check-mark';
 import type {TableBodyCellType, TableBodyType, TableHeaderCellType, TableHeaderType} from '../table-type';
+
+import tableBodyStyle from './table-body.scss';
 
 type PropsType = {|
     +header: TableHeaderType,
@@ -34,9 +33,9 @@ export class TableBody extends Component<PropsType, StateType> {
         const cellValue = this.getCellValue(headerCell, row);
 
         return (
-            <TableCellMaterialUi align={headerCell.align} key={cellName}>
+            <td align={headerCell.align} className={tableBodyStyle.table_body_cell} key={cellName}>
                 {cellValue}
-            </TableCellMaterialUi>
+            </td>
         );
     }
 
@@ -46,9 +45,9 @@ export class TableBody extends Component<PropsType, StateType> {
         const {columnList} = header;
 
         return (
-            <TableRowMaterialUi hover key={index} tabIndex={-1}>
+            <tr key={index}>
                 {columnList.map((headerCell: TableHeaderCellType): Node => this.renderCell(headerCell, row))}
-            </TableRowMaterialUi>
+            </tr>
         );
     }
 
@@ -58,9 +57,7 @@ export class TableBody extends Component<PropsType, StateType> {
         const {rowList} = table;
 
         return (
-            <TableBodyMaterialUi key="table">
-                {rowList.map((row: TableBodyCellType, index: number): Node => this.renderRow(row, index))}
-            </TableBodyMaterialUi>
+            <tbody>{rowList.map((row: TableBodyCellType, index: number): Node => this.renderRow(row, index))}</tbody>
         );
     }
 }

@@ -1,8 +1,8 @@
 // @flow
 
 import React, {type Node} from 'react';
-import TypographyMaterialUi from '@material-ui/core/Typography/Typography';
-import BoxMaterialUi from '@material-ui/core/Box';
+
+import tableHeaderStyle from './table-header.scss';
 
 type PropsType = {|
     +title: string,
@@ -11,9 +11,5 @@ type PropsType = {|
 export function TableHeader(props: PropsType): Node {
     const {title} = props;
 
-    return (
-        <BoxMaterialUi p={2}>
-            <TypographyMaterialUi variant="h5">{title}</TypographyMaterialUi>
-        </BoxMaterialUi>
-    );
+    return <h5 className={tableHeaderStyle.table_header}>{title}</h5>;
 }

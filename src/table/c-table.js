@@ -1,7 +1,6 @@
 // @flow
 
 import React, {type Node, useCallback, useEffect, useState} from 'react';
-import TableMaterialUi from '@material-ui/core/Table';
 import TablePaginationMaterialUi from '@material-ui/core/TablePagination';
 
 import {mixedToInt, typeConverter} from '../lib/type';
@@ -99,7 +98,7 @@ export function Table(props: PropsType): Node {
             <TableHeader title={title}/>
             <Spinner isShow={isInProgress} position="absolute" wrapperColor="rgba(255, 255, 255, 0.5)"/>
             <IsRender isRender={!isListHasItem}>
-                <TableMaterialUi key="table-no-data">
+                <table className={tableStyle.table} key="table-no-data">
                     <TableHead
                         columnList={columnList}
                         onRequestSort={handleRequestSort}
@@ -107,7 +106,7 @@ export function Table(props: PropsType): Node {
                         orderBy={orderBy}
                     />
                     <EmptyTableBody colSpan={columnList.length} isInProgress={isInProgress}/>
-                </TableMaterialUi>
+                </table>
                 <TablePaginationMaterialUi
                     backIconButtonProps={{'aria-label': 'Previous Page'}}
                     component="div"
@@ -122,7 +121,7 @@ export function Table(props: PropsType): Node {
                 />
             </IsRender>
             <IsRender isRender={isListHasItem}>
-                <TableMaterialUi key="table">
+                <table className={tableStyle.table} key="table">
                     <TableHead
                         columnList={columnList}
                         onRequestSort={handleRequestSort}
@@ -130,7 +129,7 @@ export function Table(props: PropsType): Node {
                         orderBy={orderBy}
                     />
                     <TableBody header={header} table={{rowList: list}}/>
-                </TableMaterialUi>
+                </table>
                 <TablePaginationMaterialUi
                     backIconButtonProps={{'aria-label': 'Previous Page'}}
                     component="div"
