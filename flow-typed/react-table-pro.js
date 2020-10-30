@@ -3,7 +3,7 @@
 declare module 'react-table-pro' {
     declare export type SortDirectionType = 'asc' | 'desc';
 
-    declare export type TableCellAlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify';
+    declare export type TableCellAlignType = 'left' | 'center' | 'right';
 
     declare export type TableHeaderCellType = {|
         +id: string,
@@ -14,7 +14,7 @@ declare module 'react-table-pro' {
 
     declare export type TableHeaderType = {|
         +header: string,
-        +rowList: Array<TableHeaderCellType>,
+        +columnList: Array<TableHeaderCellType>,
     |};
 
     declare export type TableBodyCellType = {
@@ -24,7 +24,7 @@ declare module 'react-table-pro' {
 
     declare export type TableGetDataResultType = {|
         +list: Array<TableBodyCellType>,
-        +allElementsNumber: number,
+        +count: number,
     |};
 
     declare export type TableGetDataType = (
