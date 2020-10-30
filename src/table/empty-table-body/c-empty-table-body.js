@@ -19,10 +19,12 @@ export function EmptyTableBody(props: PropsType): Node {
         : emptyTableBodyStyle.empty_table_body_cell_content;
 
     return (
-        <tr className={tableBodyStyle.table_body_row}>
-            <td colSpan={colSpan}>
-                <p className={contentClassName}>&empty;</p>
-            </td>
-        </tr>
+        <tbody>
+            <tr className={tableBodyStyle.table_body_row}>
+                <td colSpan={colSpan}>
+                    <p className={contentClassName}>&empty;</p>
+                </td>
+            </tr>
+        </tbody>
     );
 }

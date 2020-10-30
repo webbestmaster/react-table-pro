@@ -1,4 +1,14 @@
+%main-style {
+    line-height: 1.4;
+    font-size: 16px;
+    color: #333;
+    font-weight: normal;
+    font-family: Helvetica, sans-serif;
+}
+
 .table_wrapper {
+    @extend %main-style;
+
     background-color: #fff;
     position: relative;
     display: block;
@@ -7,12 +17,9 @@
 }
 
 .table {
+    @extend %main-style;
+
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
-    line-height: 1.4;
-    font-size: 16px;
-    color: #333;
-    font-weight: normal;
-    font-family: Helvetica, sans-serif;
 }

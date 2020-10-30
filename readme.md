@@ -1,4 +1,4 @@
-# React Audio Player Pro (XXkb gzip)
+# React Audio Player Pro (7kb gzip)
 
 [![Build Status](https://travis-ci.org/webbestmaster/react-table-pro.svg?branch=master)](https://travis-ci.org/github/webbestmaster/react-table-pro)
 [![GitHub license](https://img.shields.io/npm/l/react-table-pro)](https://github.com/webbestmaster/react-table-pro/blob/master/license)

@@ -5,18 +5,8 @@
 import React, {type Node} from 'react';
 
 import {Markdown} from '../layout/c-markdown';
+import type {SortDirectionType, TableGetDataResultType} from '../../../../src/table';
 import {Table} from '../../../../src/table';
-
-import type {
-    SortDirectionType,
-    TableGetDataResultType,
-    TableBodyCellType,
-    TablePropsType,
-    TableGetDataType,
-    TableHeaderType,
-    TableHeaderCellType,
-    TableCellAlignType,
-} from '../../../../src/table';
 
 import appExampleMd from './app-example.md';
 

@@ -1,9 +1,7 @@
 // @flow
 
 import React, {type Node, useCallback, useEffect, useState} from 'react';
-import TablePaginationMaterialUi from '@material-ui/core/TablePagination';
 
-import {mixedToInt, typeConverter} from '../lib/type';
 import {Spinner} from '../layout/spinner/c-spinner';
 import {IsRender} from '../layout/is-render/c-is-render';
 
@@ -110,20 +108,6 @@ export function Table(props: PropsType): Node {
                     pageIndex={pageIndex}
                     rowsPerPage={rowsPerPage}
                 />
-                {/*
-                <TablePaginationMaterialUi
-                    backIconButtonProps={{'aria-label': 'Previous Page'}}
-                    component="div"
-                    count={count}
-                    key="table-pagination-no-data"
-                    nextIconButtonProps={{'aria-label': 'Next Page'}}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                    page={pageIndex}
-                    rowsPerPage={rowsPerPage}
-                    rowsPerPageOptions={tableRowsPerPageOptions}
-                />
-*/}
             </IsRender>
             <IsRender isRender={isListHasItem}>
                 <table className={tableStyle.table} key="table">
@@ -143,20 +127,6 @@ export function Table(props: PropsType): Node {
                     pageIndex={pageIndex}
                     rowsPerPage={rowsPerPage}
                 />
-                {/*
-                <TablePaginationMaterialUi
-                    backIconButtonProps={{'aria-label': 'Previous Page'}}
-                    component="div"
-                    count={count}
-                    key="table-pagination"
-                    nextIconButtonProps={{'aria-label': 'Next Page'}}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                    page={pageIndex}
-                    rowsPerPage={rowsPerPage}
-                    rowsPerPageOptions={tableRowsPerPageOptions}
-                />
-*/}
             </IsRender>
         </div>
     );
