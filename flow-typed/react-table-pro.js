@@ -13,7 +13,7 @@ declare module 'react-table-pro' {
     |};
 
     declare export type TableHeaderType = {|
-        +header: string,
+        +title: string,
         +columnList: Array<TableHeaderCellType>,
     |};
 
@@ -42,6 +42,8 @@ declare module 'react-table-pro' {
 
     // eslint-disable-next-line id-match
     declare export var Table: React$ComponentType<TablePropsType>;
+
+    declare export var sortDirection: {+[key: SortDirectionType]: SortDirectionType};
 }
 
 declare module 'react-table-pro/dist/style.css' {

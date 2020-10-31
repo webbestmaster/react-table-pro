@@ -1,7 +1,7 @@
 declare module 'react-table-pro' {
     export type SortDirectionType = 'asc' | 'desc';
 
-    export type TableCellAlignType = 'left' | 'center' | 'right' ;
+    export type TableCellAlignType = 'left' | 'center' | 'right';
 
     export interface TableHeaderCellType {
         id: string,
@@ -11,8 +11,8 @@ declare module 'react-table-pro' {
     }
 
     export interface TableHeaderType {
-        header: string,
-        rowList: Array<TableHeaderCellType>,
+        title: string,
+        columnList: Array<TableHeaderCellType>,
     }
 
     export interface TableBodyCellType {
@@ -40,6 +40,8 @@ declare module 'react-table-pro' {
 
     // eslint-disable-next-line id-match
     export const Table: React.FC<TablePropsType>;
+
+    export const sortDirection: { [key in SortDirectionType]: SortDirectionType };
 }
 
 declare module 'react-table-pro/dist/style.css' {

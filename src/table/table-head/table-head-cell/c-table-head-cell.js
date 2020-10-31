@@ -10,13 +10,13 @@ import {TableCellDirectionArrow} from './table-cell-direction-arrow/c-table-cell
 
 type PropsType = {|
     +children: Node,
-    +align?: TableCellAlignType,
+    +align: TableCellAlignType,
     +direction?: SortDirectionType,
     +handleSort?: (event: SyntheticEvent<HTMLElement>) => mixed,
 |};
 
 export function TableHeadCell(props: PropsType): Node {
-    const {children, align = '', direction, handleSort} = props;
+    const {children, align, direction, handleSort} = props;
 
     const className = classNames(tableHeaderCellStyle.table_head_cell, {
         [tableHeaderCellStyle.table_head_cell__sortable]: Boolean(handleSort),
