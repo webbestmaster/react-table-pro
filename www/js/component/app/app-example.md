@@ -40,7 +40,7 @@ export function getDataList(
     );
 }
 
-const tableHeader = {
+const tableHeader: TableHeaderType = {
     // title of table, string, required
     title: 'User list',
     // list of column descriptions, required

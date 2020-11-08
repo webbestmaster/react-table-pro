@@ -5,7 +5,7 @@
 import React, {type Node} from 'react';
 
 import {Markdown} from '../layout/c-markdown';
-import type {SortDirectionType, TableGetDataResultType} from '../../../../src/table';
+import type {SortDirectionType, TableGetDataResultType, TableHeaderType} from '../../../../src/table';
 import {Table} from '../../../../src/table';
 
 import appExampleMd from './app-example.md';
@@ -34,7 +34,7 @@ export function getDataList(
     );
 }
 
-const tableHeader = {
+const tableHeader: TableHeaderType = {
     // title of table, string, required
     title: 'User list',
     // list of column descriptions, required
