@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 export function getCountString(pageIndex: number, rowsPerPage: number, count: number): string {
     const beginPageNumber = pageIndex * rowsPerPage + 1;
@@ -9,7 +9,7 @@ export function getCountString(pageIndex: number, rowsPerPage: number, count: nu
     return `${beginPageNumber}-${endPageNumber} / ${count}`;
 }
 
-export function renderOption(value: number): Node {
+export function renderOption(value: number): React$Node {
     return (
         <option key={value} value={value}>
             {value}

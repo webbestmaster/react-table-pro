@@ -1,15 +1,15 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
-import tableHeaderStyle from './table-header.scss';
+// import tableHeaderStyle from './table-header.scss';
 
 type PropsType = {|
-    +title: string,
+    +title: React$Node,
 |};
 
-export function TableHeader(props: PropsType): Node {
+export function TableHeader(props: PropsType): React$Node {
     const {title} = props;
 
-    return <h5 className={tableHeaderStyle.table_header}>{title}</h5>;
+    return title;
 }

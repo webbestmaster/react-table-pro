@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node, useCallback, useEffect, useRef, useState} from 'react';
+import React from 'react';
 
 import {classNames} from '../../lib/css';
 
@@ -16,7 +16,7 @@ type PropsType = {|
     +optionList: Array<number>,
 |};
 
-export function TablePagination(props: PropsType): Node {
+export function TablePagination(props: PropsType): React$Node {
     const {count, onChangePageIndex, onChangeRowsPerPage, pageIndex, rowsPerPage, optionList} = props;
 
     const isPreviousButtonDisabled = pageIndex <= 0;

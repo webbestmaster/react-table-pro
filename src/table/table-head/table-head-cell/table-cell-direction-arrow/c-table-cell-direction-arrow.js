@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 import type {SortDirectionType} from '../../../table-type';
 import {sortDirection} from '../../../table-const';
@@ -11,7 +11,7 @@ type PropsType = {
     +direction?: SortDirectionType,
 };
 
-export function TableCellDirectionArrow(props: PropsType): Node {
+export function TableCellDirectionArrow(props: PropsType): React$Node {
     const {direction} = props;
 
     if (!direction) {

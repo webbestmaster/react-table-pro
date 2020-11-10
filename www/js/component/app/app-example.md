@@ -1,7 +1,7 @@
 ```javascript
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 import {Table} from 'react-table-pro';
 import reactTableProStyle from 'react-table-pro/dist/style.css';
 
@@ -19,7 +19,7 @@ import type {
 type ApiResultType = {
     // ApiResultType are equals for TableBodyCellType for example only
     // you can use your own structure api's data
-    +[key: string]: string | number | boolean | Node,
+    +[key: string]: string | number | boolean | React$Node,
 };
 
 // your own function to fetch data
@@ -80,7 +80,7 @@ async function tableGetUserList(
     };
 }
 
-export function App(): Node {
+export function App(): React$Node {
     return (
         &lt;Table
             // function to get data, type TableGetDataType, required

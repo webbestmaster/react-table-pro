@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component, type Node} from 'react';
+import React, {Component} from 'react';
 
 import {isBoolean} from '../../lib/is';
 import {CheckMark} from '../ui/check-mark/c-check-mark';
@@ -16,7 +16,7 @@ type PropsType = {|
 type StateType = null;
 
 export class TableBody extends Component<PropsType, StateType> {
-    getCellValue(headerCell: TableHeaderCellType, row: TableBodyCellType): Node {
+    getCellValue(headerCell: TableHeaderCellType, row: TableBodyCellType): React$Node {
         const cellName = headerCell.id;
 
         const cellValue = row[cellName];
@@ -28,7 +28,7 @@ export class TableBody extends Component<PropsType, StateType> {
         return cellValue;
     }
 
-    renderCell(headerCell: TableHeaderCellType, row: TableBodyCellType): Node {
+    renderCell(headerCell: TableHeaderCellType, row: TableBodyCellType): React$Node {
         const cellName = headerCell.id;
         const cellValue = this.getCellValue(headerCell, row);
 
@@ -39,25 +39,27 @@ export class TableBody extends Component<PropsType, StateType> {
         );
     }
 
-    renderRow(row: TableBodyCellType, index: number): Node {
+    renderRow(row: TableBodyCellType, index: number): React$Node {
         const {props} = this;
         const {header} = props;
         const {columnList} = header;
 
         return (
             <tr className={tableBodyStyle.table_body_row} key={index}>
-                {columnList.map((headerCell: TableHeaderCellType): Node => this.renderCell(headerCell, row))}
+                {columnList.map((headerCell: TableHeaderCellType): React$Node => this.renderCell(headerCell, row))}
             </tr>
         );
     }
 
-    render(): Node {
+    render(): React$Node {
         const {props} = this;
         const {table} = props;
         const {rowList} = table;
 
         return (
-            <tbody>{rowList.map((row: TableBodyCellType, index: number): Node => this.renderRow(row, index))}</tbody>
+            <tbody>
+                {rowList.map((row: TableBodyCellType, index: number): React$Node => this.renderRow(row, index))}
+            </tbody>
         );
     }
 }

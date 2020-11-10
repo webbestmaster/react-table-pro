@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component, type Node} from 'react';
+import React, {Component} from 'react';
 
 import type {OnRequestSortCallBackType, SortDirectionType, TableHeaderCellType} from '../table-type';
 
@@ -25,7 +25,7 @@ export class TableHead extends Component<PropsType, StateType> {
         };
     }
 
-    renderCell(column: TableHeaderCellType): Node {
+    renderCell(column: TableHeaderCellType): React$Node {
         const {props} = this;
         const {order, orderBy} = props;
         const {id, label, hasSort, align} = column;
@@ -55,13 +55,13 @@ export class TableHead extends Component<PropsType, StateType> {
         );
     }
 
-    render(): Node {
+    render(): React$Node {
         const {props} = this;
         const {columnList} = props;
 
         return (
             <thead>
-                <tr>{columnList.map((column: TableHeaderCellType): Node => this.renderCell(column))}</tr>
+                <tr>{columnList.map((column: TableHeaderCellType): React$Node => this.renderCell(column))}</tr>
             </thead>
         );
     }

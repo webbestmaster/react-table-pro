@@ -1,7 +1,5 @@
 // @flow
 
-import {type Node} from 'react';
-
 export type SortDirectionType = 'asc' | 'desc';
 
 export type TableSavedStateType = {|
@@ -20,12 +18,12 @@ export type TableHeaderCellType = {|
 |};
 
 export type TableHeaderType = {|
-    +title: string,
+    +title: React$Node,
     +columnList: Array<TableHeaderCellType>,
 |};
 
 export type TableBodyCellType = {
-    +[key: string]: string | number | boolean | Node,
+    +[key: string]: string | number | boolean | React$Node,
 };
 
 export type TableBodyType = {|

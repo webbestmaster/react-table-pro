@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 import checkMarkStyle from './check-mark.scss';
 import {checkMarkChecked, checkMarkUnchecked} from './check-mark-const';
@@ -9,7 +9,7 @@ type PropsType = {|
     +isChecked: boolean,
 |};
 
-export function CheckMark(props: PropsType): Node {
+export function CheckMark(props: PropsType): React$Node {
     const {isChecked} = props;
 
     return (

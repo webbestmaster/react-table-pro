@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node, useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 
 import {Spinner} from '../layout/spinner/c-spinner';
 import {IsRender} from '../layout/is-render/c-is-render';
@@ -27,7 +27,7 @@ type StateType = {|
     +isInProgress: boolean,
 |};
 
-export function Table(props: PropsType): Node {
+export function Table(props: PropsType): React$Node {
     const {getData, header} = props;
     const {columnList, title} = header;
 

@@ -2,7 +2,7 @@
 
 /* global fetch */
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 import {Markdown} from '../layout/c-markdown';
 import type {SortDirectionType, TableGetDataResultType, TableHeaderType} from '../../../../src/table';
@@ -13,7 +13,7 @@ import appExampleMd from './app-example.md';
 type ApiResultType = {
     // ApiResultType are equals for TableBodyCellType for example only
     // you can use your own structure api's data
-    +[key: string]: string | number | boolean | Node,
+    +[key: string]: string | number | boolean | React$Node,
 };
 
 // your own function to fetch data
@@ -36,7 +36,7 @@ export function getDataList(
 
 const tableHeader: TableHeaderType = {
     // title of table, string, required
-    title: 'User list',
+    title: <h3>User list</h3>,
     // list of column descriptions, required
     columnList: [
         {
@@ -76,7 +76,7 @@ async function tableGetUserList(
     };
 }
 
-export function App(): Node {
+export function App(): React$Node {
     return (
         <div className="example-wrapper">
             <Markdown config={{useWrapper: false}} mdInput={appExampleMd}/>

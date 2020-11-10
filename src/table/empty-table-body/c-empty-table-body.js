@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 import tableBodyStyle from '../table-body/table-body.scss';
 
@@ -11,7 +11,7 @@ type PropsType = {|
     +isInProgress: boolean,
 |};
 
-export function EmptyTableBody(props: PropsType): Node {
+export function EmptyTableBody(props: PropsType): React$Node {
     const {colSpan, isInProgress} = props;
 
     const contentClassName = isInProgress

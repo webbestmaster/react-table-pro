@@ -13,7 +13,7 @@ declare module 'react-table-pro' {
     |};
 
     declare export type TableHeaderType = {|
-        +title: string,
+        +title: React$Node,
         +columnList: Array<TableHeaderCellType>,
     |};
 

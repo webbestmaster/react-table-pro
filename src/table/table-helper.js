@@ -16,7 +16,7 @@ export function getDefaultState(props: TablePropsType): TableSavedStateType {
 }
 
 function getTableKey(props: TablePropsType): string {
-    const title = props.header.title;
+    const title = JSON.stringify(props.header.title || {}) || 'no-table-name';
     const columns = props.header.columnList.map((column: TableHeaderCellType): string => column.id).join(' | ');
 
     return `Table "${title}" - ${columns}`;

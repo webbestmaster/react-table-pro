@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 import type {SortDirectionType, TableCellAlignType} from '../../table-type';
 import {classNames} from '../../../lib/css';
@@ -9,13 +9,13 @@ import tableHeaderCellStyle from './table-head-cell.scss';
 import {TableCellDirectionArrow} from './table-cell-direction-arrow/c-table-cell-direction-arrow';
 
 type PropsType = {|
-    +children: Node,
+    +children: React$Node,
     +align: TableCellAlignType,
     +direction?: SortDirectionType,
     +handleSort?: (event: SyntheticEvent<HTMLElement>) => mixed,
 |};
 
-export function TableHeadCell(props: PropsType): Node {
+export function TableHeadCell(props: PropsType): React$Node {
     const {children, align, direction, handleSort} = props;
 
     const className = classNames(tableHeaderCellStyle.table_head_cell, {
