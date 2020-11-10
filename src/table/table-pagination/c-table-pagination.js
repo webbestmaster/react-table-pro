@@ -45,12 +45,13 @@ export function TablePagination(props: PropsType): React$Node {
         onChangeRowsPerPage(newRowsPerPage);
     }
 
-    /* eslint-disable jsx-a11y/no-onchange */
     return (
         <div className={tablePaginationStyle.table_pagination}>
             <select
+                aria-label="rows per page"
                 className={tablePaginationStyle.table_pagination__select}
                 defaultValue={rowsPerPage}
+                onBlur={handleChangeRowsPerPage}
                 onChange={handleChangeRowsPerPage}
             >
                 {optionList.map(renderOption)}
@@ -58,10 +59,15 @@ export function TablePagination(props: PropsType): React$Node {
             <p className={tablePaginationStyle.table_pagination__count}>
                 {getCountString(pageIndex, rowsPerPage, count)}
             </p>
-            <button className={previousButtonClassName} onClick={handlePreviousButton} type="button">
+            <button
+                aria-label="previous page"
+                className={previousButtonClassName}
+                onClick={handlePreviousButton}
+                type="button"
+            >
                 &#x21e6;
             </button>
-            <button className={nextButtonClassName} onClick={handleNextButton} type="button">
+            <button aria-label="next page" className={nextButtonClassName} onClick={handleNextButton} type="button">
                 &#x21e8;
             </button>
         </div>
